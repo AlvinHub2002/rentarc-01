@@ -1,0 +1,108 @@
+.navbar{
+    position: fixed;
+    top: 0;
+    width:100%;
+    height: 40px;
+    background-color: black;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    margin: auto;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.nav-contents{
+    display: inline-block;
+    justify-content: flex-end;
+
+}
+
+
+.logo{
+    display: block;
+    position: fixed;
+    left: 20px;
+    width : 35px;
+    align-self: center;
+    margin-right: auto;
+    padding-top: 5px;
+
+}
+
+
+.logo-name{
+    float: left;
+    display: flex;
+    color: white;
+    font-family: 'Montserrat';
+    align-self: center;
+    margin-left: 4rem ;
+    padding: auto;
+    font-size: 20px;
+    margin-top: 8px;
+    font-weight:600;
+
+}
+
+.content-list{
+    font-family: montserrat;
+    display: inline-flex;
+    position :fixed;
+    right:190px;
+    padding:7px;
+    margin-right: 20px;
+}
+.home a{
+    padding-right: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight:50;
+}
+
+.contact a{
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight:100
+}
+
+.buttons{
+    display: inline-flex;
+    position: fixed;
+    right: 20px;
+    padding: 5px;
+    
+}
+
+.login{
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 25px;
+    font-family:'Montserrat';
+    font-size: 15px;
+    background-color: #370C94;
+    color: white;
+    font-weight: lighter;
+    outline: none;
+    border: none;
+
+}
+
+.signup{
+    margin-right: auto;
+    margin-left: 10px;
+    border-radius: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 25px;
+    font-family:'Montserrat';
+    font-size: 15px;
+    outline: none;
+    border: none;
+}

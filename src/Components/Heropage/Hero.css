@@ -1,0 +1,62 @@
+.heading{
+    padding-top: 230px;
+    /* height: 500px; */
+    font-weight:200;
+    max-width: 500px;
+    font-family: 'Montserrat';
+    font-size: 60px;
+    float:left;
+    text-align: center;
+    margin-left: 100px;
+    letter-spacing: 2px;
+    color: white;
+}
+
+.store{
+    float:right;
+    padding-top: 150px;
+}
+
+.description{
+    /* display: block; */
+    margin-left: 90px;
+    font-family: 'Montserrat';
+    padding-top: 430px;
+    text-align: left;
+    max-width: 550px;
+    font-size: larger;
+    line-height: 30px;
+    letter-spacing: 1.75px;
+    color:lightgrey;
+}
+
+.rent{
+    margin-top: 160px;
+    float: left;
+    margin-left: 120px;
+    width: 130px;
+    height: 35px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight:500;
+    border-width: 1px;
+    background-color: black;
+    color: white;
+    border-color: white;
+
+}
+
+.give{
+    margin-top: 160px;
+    float: left;
+    margin-left: 100px;
+    width: 130px;
+    height: 35px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    border-width: 1px;
+    background-color: black;
+    color: white;
+    border-color: white;
+}
