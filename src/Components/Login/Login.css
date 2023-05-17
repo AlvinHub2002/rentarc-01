@@ -1,0 +1,150 @@
+*{
+    box-sizing: border-box;
+    
+}
+html,body{
+    height: 100%;
+}
+@keyframes background{
+    100% {
+        background-size: 4000px 1000pxs;
+    }
+}
+
+body{
+    display:grid;
+    place-items: center;
+    margin: 0;
+    overflow: hidden;
+    padding:0 24px;
+    background-image: url("bg.svg");
+    background-size: 2000px 1000px;
+    color: #f9f9f9;
+    font-family: "Euclid Circular A";
+    animation: background 10s infinite alternate linear;
+}
+
+@media (width >=500px){
+    body{
+        padding:0;
+    }
+}
+
+.login{
+    width: 90%;
+    padding: 70px 30px 44px;
+    border-radius: 22px;
+    background:#161616;
+    text-align: center;
+    box-shadow: 0 15px 25px rgba(143, 124, 236, 0.7);
+
+}
+
+@media (width>=450px){
+    .login{width: 380px;}
+}
+
+.avatar{
+    margin:0 auto 16px;
+    border-radius: 50%;
+    background:linear-gradient(-45deg,#157ae1,#c7a1ff);
+    padding:2px;
+    width: 120px;
+    height:120px;
+}
+.avatar img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #161616;
+}
+
+.login>h2{
+    font-size: 36px;
+    font-weight: 500;
+    margin: 0 0 4px;
+}
+
+.login > h3{
+    color: rgba(225,225,225,0.38);
+    margin: 0 0 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.login-form{
+    display:grid;
+    gap: 16px;
+    place-items: center;
+    width: 100%;
+    margin: 0;
+}
+
+.textbox{
+    width:100%;
+    position: relative;
+}
+
+
+
+.login-form input,.login-form button{
+    width: 100%;
+    height: 60px;
+    outline: none;
+    padding: 0;
+    font-family: inherit;
+    font-size:  16px;
+    border-radius: 8px;
+}
+
+.login-form input{
+    background: transparent;
+    border: 2px solid rgba(225, 225, 225, 0.1);
+    font-size: 18px;
+    padding: 0 20px 0 50px;
+    color: inherit;
+}
+
+.login-form input:hover,:focus{
+    border-color: #157ae1;
+}
+
+.login-form input:focus ~ span{
+    color: #157ae1;
+}
+
+.login-form button{
+    cursor: pointer;
+    background: #157ae1;
+    color: #f9f9f9;
+    border :0;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.login-form a{
+    color: #157ae1;
+    font-size: 16px;
+    text-align: left;
+    text-decoration: none;
+}
+
+.logo{
+ display:flex;
+ width:100%;
+ height: 40px;
+ position:absolute;
+ margin-left: 700px;
+ bottom: 30px;
+}
+
+.foot{
+    display: flex;
+    position: absolute;
+    margin-left: 770px;
+    bottom: 10px;
+    font-size: 25px;
+    font-weight: lighter;
+}
+
