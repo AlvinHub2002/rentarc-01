@@ -14,7 +14,7 @@
 
 .store{
     float:right;
-    padding-top: 150px;
+    padding-top: 300px;
 }
 
 .description{
@@ -28,12 +28,13 @@
     line-height: 30px;
     letter-spacing: 1.75px;
     color:lightgrey;
+    font-weight:100px;
 }
 
 .rent{
-    margin-top: 160px;
+    margin-top: 100px;
     float: left;
-    margin-left: 120px;
+    margin-left: 140px;
     width: 130px;
     height: 35px;
     border-radius: 20px;
@@ -47,7 +48,7 @@
 }
 
 .give{
-    margin-top: 160px;
+    margin-top: 100px;
     float: left;
     margin-left: 100px;
     width: 130px;
@@ -59,4 +60,17 @@
     background-color: black;
     color: white;
     border-color: white;
+}
+
+.form-control {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+    border-radius: 50px;
 }
