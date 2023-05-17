@@ -1,16 +1,19 @@
 import React from 'react'
 import Login from './Components/Login/Login'
-// import Navbar from './Components/Navbar/Navbar'
-// import './App.css'
-// import Hero from './Components/Heropage/Hero'
+import { Routes, Route } from 'react-router-dom';
+import Signup from './Components/Signup/Signup'
 function App() {
   return (
-    <div>
-      {/* <Navbar/>
-      <Hero/> */}
-      <Login/>
-    </div>
+    // <div>
+    //   <Login/>
+    //   <Signup/>
+    // </div>
+  <div className='app'>
+    <Routes>
+      <Route path='/' element={<Signup/>} />
+      <Route path='/Login' element={<Login/>} />
+    </Routes>
+  </div>
   )
 }
-
 export default App

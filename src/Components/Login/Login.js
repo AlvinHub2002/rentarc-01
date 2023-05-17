@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from './logo.png'
+import { Link } from 'react-router-dom';
 import './Login.css'
 import avatar from'./avatar.png'
 function Login() {
@@ -19,7 +20,7 @@ function Login() {
                 <input type="password" placeholder='password'/>
             </div>
             <button type="submit">Login</button>
-            <a href='amazom.com'>Forgot credentials?</a>
+            <Link to='/'>Register for an account </Link>
         </form>
     </div>
     <div className='logo'>

@@ -123,6 +123,11 @@ body{
     letter-spacing: 2px;
 }
 
+.login-form button:hover{
+    background:  rgb(46, 47, 50);
+    color: white;
+}
+
 .login-form a{
     color: #157ae1;
     font-size: 16px;
