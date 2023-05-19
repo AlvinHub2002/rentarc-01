@@ -176,7 +176,7 @@ function Navbar() {
 </div>
     </section>
     <section className='sect2'>
-      section-2
+      
       </section>
     </div>
 
