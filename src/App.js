@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import Hero from './Components/Heropage/Hero'
+// import Hero from './Components/Heropage/Hero'
 import Navbar from './Components/Navbar/Navbar'
 // import Login from './Components/Login/Login'
 // import { Routes, Route } from 'react-router-dom';
@@ -15,7 +15,7 @@ function App() {
   // </div>
   <div className='app'>
    <Navbar/>
-   <Hero/>
+   {/* <Hero/> */}
    </div>
 )
 }

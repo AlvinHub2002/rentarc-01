@@ -7,9 +7,9 @@ import cd3 from './card3.png'
 import cd2 from './card2.png'
 import cd1 from './card1.png'
 import cart from './cart.png'
-import car1 from './car1.png'
-import car2 from './car2 .png'
-import car3 from './car6.png'
+import car1 from './rent6.png'
+import car2 from './rent5.png'
+import car3 from './rent4.png'
 import store from './Buy at online shop - 2004x1500 1.png'
 import { useEffect } from 'react';
 function Navbar() {
@@ -171,12 +171,57 @@ function Navbar() {
 </div>
 </div>
 
-
+<div className='more'>
+  <button className='more-button'>More <i class='fas fa-angle-right'></i></button>
+</div>
 
 </div>
     </section>
     <section className='sect2'>
-      
+
+    <footer class="top">
+        <img src="logo.svg" alt='' />
+        <div class="links">
+          <div className='footer-section'>
+            <h2>Section</h2>
+            <a href='amazom.com'>Home</a>
+            <a href='amazon'>Categories</a>
+            <a href='amazon.com'>Profile</a>
+          </div>
+          <div className='about'>
+            <h2 className='footer-about'>Contact Details</h2>
+            <p className='address'>Address: 123 Main Street, City, Country</p>
+            <p className='phone'>Phone: (123) 456-7890</p>
+            <p className='email'>Email: info@example.com</p>
+          </div>
+        </div>
+      </footer>
+      <footer class="bottom">
+        <div class="legal">
+          <p className='rights'> © 2023 All rights reserved </p>
+          <div className='terms'>
+          <p> License </p>
+          <p> Terms </p>
+          <p> Privacy </p>
+          </div>
+        </div>
+        <div class="links">
+          <p class="fa-brands fa-github"></p>
+          <p class="fa-brands fa-linkedin"></p>
+          <p class="fa-brands fa-docker"></p>
+        </div>
+        <div className='about-us'>
+          <a className='us' href='amazon.com'>About Us</a>
+        </div>
+
+        <div className='brand'>
+
+          <img src={Logo} alt=''></img>
+          <h1 className='brand-name'>RentArc</h1>
+
+        </div>
+      </footer>
+
       </section>
     </div>
 
