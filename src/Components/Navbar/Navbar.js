@@ -10,9 +10,15 @@ import cart from './cart.png'
 import car1 from './rent6.png'
 import car2 from './rent5.png'
 import car3 from './rent4.png'
+import profile from './profile.png'
 import store from './Buy at online shop - 2004x1500 1.png'
-import { useEffect } from 'react';
+import { useEffect} from 'react';
+import axios from 'axios';
+
+
+
 function Navbar() {
+
   useEffect(() => {
     const headerEl = document.querySelector('.header');
 
@@ -27,6 +33,20 @@ function Navbar() {
       window.removeEventListener('scroll', isScrolling);
     };
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await axios.post('http://localhost:3000/Navbar');
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
+
+
+
+
+
   return (
     <div className='home-page'>
   {/* -----------------------------------------------------------------NavBar------------------------------------------------------------------------------------------------ */}
@@ -41,8 +61,10 @@ function Navbar() {
           <a href='amazom.com'>Contact us</a>
           </div>
           <div className='buttons'>
-          <button class="button" aria-label="login">Login</button>
-				<button class="button" aria-label="">Sign up</button>
+          <button class="button" aria-label="login" onClick={handleLogout}>Log out</button>
+				<a href='amazon.com'>
+          <img className='profile-icon' src={profile} alt='amazon.com'></img>
+        </a>
         </div>
 			</nav>
 		</header>

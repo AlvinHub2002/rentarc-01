@@ -1,8 +1,7 @@
 body{
     display: grid;
     place-items: center;
-    padding-top: 2%;
-    overflow: hidden;
+    padding-top: 0;
     background-image: url("bg.svg");
     background-size: 2000px 1000px;
 }

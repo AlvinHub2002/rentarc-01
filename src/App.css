@@ -1,19 +1,1 @@
-*{
-  margin: 0;
-  padding: 0;
-}
-@keyframes background{
-  100% {
-      background-size: 4000px 1000pxs;
-  }
-}
-
-
-body{
-  place-items: center;
-  padding-top: 7%;
-    /* background-image: url("bg.svg"); */
-  background-size: 2000px 1000px;
-  background-color: #101010;
-}
 

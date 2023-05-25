@@ -15,7 +15,6 @@ body{
     display:grid;
     place-items: center;
     margin: 0;
-    overflow: hidden;
     padding:0 24px;
     background-image: url("bg.svg");
     background-size: 2000px 1000px;

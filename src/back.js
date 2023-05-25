@@ -68,3 +68,9 @@ app.post("/Signup",async(req,res)=>{
     }
 })
 
+
+app.post('/Navbar', (req, res) => {
+
+    res.send({ message: 'Logout successful' });
+  });
+
