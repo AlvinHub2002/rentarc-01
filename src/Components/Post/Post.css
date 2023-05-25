@@ -1,0 +1,102 @@
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 5px auto;
+    padding: 50px;
+    background-color: #939396;
+    border-radius: 20px;
+    box-shadow: 0 15px 25px rgba(68, 50, 160, 0.7);
+
+  }
+  
+  div {
+    margin-bottom: 10px;
+  }
+
+  .product-details{
+    padding-top: 3rem;
+  }
+
+  .post input{
+    border-radius: 10px;
+    height: 35px;
+    border: none;
+  }
+
+  .post select{
+    border-radius: 10px;
+    height: 35px;
+    border: none;
+  }
+  .post textarea{
+    border-radius: 10px;
+    border: none;
+  }
+
+  .product-detail-heading{
+    color: white;
+    text-align: center;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  select,
+  input[type='text'],
+  input[type='number'],
+  textarea {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  .image-upload-container {
+    position: relative;
+  }
+  
+  .upload-box-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .upload-box {
+    width: 100%;
+    height: 200px;
+    border: 1px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .upload-box span {
+    font-size: 40px;
+    color: #ccc;
+  }
+  
+  .image-preview {
+    width: auto;
+    height: 100%;
+    object-fit:fill;
+  }
+
+  .post-button{
+    text-align: center;
+    padding-top: 3rem;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 30px;
+    width: 200px;
+    background-color: #5656d6;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-color: white;
+  }
+  
