@@ -1,7 +1,7 @@
 body{
     display: grid;
     place-items: center;
-    padding-top: 7%;
+    padding-top: 2%;
     overflow: hidden;
     background-image: url("bg.svg");
     background-size: 2000px 1000px;
@@ -9,8 +9,8 @@ body{
 .form{
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-width: 350px;
+    gap: 5px;
+    max-width: 500px;
     background-color: #232434;
     padding: 20px;
     border-radius: 20px;
@@ -153,3 +153,9 @@ to{
        font-weight: lighter;
        color: #fff;
    }
+
+   .error{
+    color: red;
+    font-size: 14px;
+    padding-top: 0;
+}

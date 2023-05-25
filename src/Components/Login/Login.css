@@ -153,3 +153,9 @@ body{
     font-weight: lighter;
 }
 
+
+.error{
+    color: red;
+    font-size: 14px;
+    padding-top: 0;
+}
