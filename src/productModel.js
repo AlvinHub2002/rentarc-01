@@ -1,15 +1,15 @@
 const mongoose = require("mongoose")
 const uri = "mongodb+srv://Rentarc01:rentarcpassword@rentarc-01.v6gdebq.mongodb.net/Rentarc-01"
-async function connect(){
-    try{
-        await mongoose.connect(uri);
-        console.log("Database connected...")
-    }catch(error){
-        console.error(error)
-    }
-}
+// async function connect(){
+//     try{
+//         await mongoose.connect(uri);
+//         console.log("Database connected...")
+//     }catch(error){
+//         console.error(error)
+//     }
+// }
 
-connect();
+// connect();
 const newSchema=new mongoose.Schema({
     category: String,
     brand: String,

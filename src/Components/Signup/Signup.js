@@ -90,11 +90,13 @@ function Signup() {
                 Already have an account? <span><Link to='/'>Sign in</Link></span>
             </p>
         </form>
+        <div className='under'>
         <div className='logo'>
             <img src={logo} alt="" />
         </div>
         <div className='foot'>
             <p>RentArc</p>
+        </div>
         </div>
     </div>
   )

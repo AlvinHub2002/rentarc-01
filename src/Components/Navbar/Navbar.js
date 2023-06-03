@@ -13,11 +13,19 @@ import car3 from './rent4.png'
 import profile from './profile.png'
 import store from './Buy at online shop - 2004x1500 1.png'
 import { useEffect} from 'react';
+import { useState } from 'react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Navbar() {
+
+  const history=useNavigate();
+
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+
 
   useEffect(() => {
     const headerEl = document.querySelector('.header');
@@ -44,6 +52,31 @@ function Navbar() {
   };
 
 
+
+  const handleRentNowClick = () => {
+    history('/product-list');
+  };
+
+  const handleGiveforrent = () => {
+    history('/Post');
+  };
+
+  const handlemore = () => {
+    history('/product-list');
+  };
+
+
+  const handleCategorySelection = (category) => {
+    setSelectedCategory(category);
+    localStorage.setItem('selectedCategory', category);
+    history('/Categorypage');
+  };
+
+  // useEffect(() => {
+  //   return () => {
+  //     localStorage.removeItem('selectedCategory');
+  //   };
+  // }, []);
 
 
 
@@ -74,8 +107,8 @@ function Navbar() {
           <h1>A Complete Rental Website for you</h1>
           <p>RentArc enables one to rent different products near them . We also provide functionality to give your products for rent to others</p>
        <div class="buttons-hero">
-          <button className='rent'>Rent Now</button>
-          <button className='give'>Give for rent</button>
+          <button className='rent' onClick={handleRentNowClick} >Rent Now</button>
+          <button className='give' onClick={handleGiveforrent}>Give for rent</button>
        </div>
      </div>
   <div class="store">
@@ -84,7 +117,7 @@ function Navbar() {
     </section>
   {/* ---------------------------------------------------------------------Section-2---------------------------------------------------------------------------------------------- */}
     <section className='sect1'>
-    <div class="search-bar">
+    <div className="search-bar">
     <input type="text" placeholder="Search..."></input>
   </div>
 
@@ -93,9 +126,12 @@ function Navbar() {
   <button class="dropdown-button">Categories</button>
   <img src={cat} alt=''></img>
   <div class="dropdown-content">
-    <a href="amzon.com">Item 1</a>
-    <a href="amzon.com">Item 2</a>
-    <a href="amzon.com">Item 3</a>
+          <option value="Photography and Videography" onClick={() => handleCategorySelection('Photography and Videography')}>Photography and Videography</option>
+          <option value="Power Tools" onClick={() => handleCategorySelection('Power Tools')}>Power Tools</option>
+          <option value="Home Accessories" onClick={() => handleCategorySelection('Home Accessories')}>Home Accessories</option>
+          <option value="Gadgets" onClick={() => handleCategorySelection('Gadgets')}>Gadgets</option>
+          <option value="Medical Equipments" onClick={() => handleCategorySelection('Medical Equipments')}>Medical Equipments</option>
+          <option value="Camping and Outdoor" onClick={() => handleCategorySelection('Camping and Outdoor')}>Camping and Outdoor</option>
   </div>
   </div>
   <div className='cart'>
@@ -194,7 +230,7 @@ function Navbar() {
 </div>
 
 <div className='more'>
-  <button className='more-button'>More <i class='fas fa-angle-right'></i></button>
+  <button className='more-button' onClick={handlemore}>More <i class='fas fa-angle-right'></i></button>
 </div>
 
 </div>

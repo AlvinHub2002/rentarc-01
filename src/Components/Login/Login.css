@@ -1,37 +1,18 @@
-*{
-    box-sizing: border-box;
-    
-}
-html,body{
-    height: 100%;
-}
-@keyframes background{
-    100% {
-        background-size: 4000px 1000pxs;
-    }
-}
 
-body{
-    display:grid;
+.login-page{
+    height: 100vh;
+    display: flex;
     place-items: center;
-    margin: 0;
-    padding:0 24px;
+    padding: 15rem;
+    color: white;
     background-image: url("bg.svg");
     background-size: 2000px 1000px;
-    color: #f9f9f9;
-    font-family: "Euclid Circular A";
-    animation: background 10s infinite alternate linear;
-}
-
-@media (width >=500px){
-    body{
-        padding:0;
-    }
+    
 }
 
 .login{
     width: 90%;
-    padding: 70px 30px 44px;
+    padding: 70px 50px 44px;
     border-radius: 22px;
     background:#161616;
     text-align: center;
@@ -40,7 +21,7 @@ body{
 }
 
 @media (width>=450px){
-    .login{width: 380px;}
+    .login{width: 500px;}
 }
 
 .avatar{
@@ -158,3 +139,4 @@ body{
     font-size: 14px;
     padding-top: 0;
 }
+

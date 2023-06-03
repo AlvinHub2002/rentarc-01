@@ -1,11 +1,12 @@
-body{
-    display: grid;
+.signup-page{
+    height: 100vh;
+    display: flex;
     place-items: center;
-    padding-top: 0;
+    padding: 15rem;
     background-image: url("bg.svg");
     background-size: 2000px 1000px;
 }
-.form{
+.signup-page form{
     display: flex;
     flex-direction: column;
     gap: 5px;

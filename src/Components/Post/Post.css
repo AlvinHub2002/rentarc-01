@@ -1,16 +1,16 @@
-form {
+.post form {
     display: flex;
     flex-direction: column;
     max-width: 700px;
     margin: 5px auto;
     padding: 50px;
-    background-color: #67676a;
+    background-color: #959598;
     border-radius: 20px;
     box-shadow: 0 15px 25px rgba(68, 50, 160, 0.7);
 
   }
   
-  div {
+ .post div {
     margin-bottom: 10px;
   }
 
@@ -39,11 +39,11 @@ form {
     text-align: center;
   }
   
-  label {
+  .post label {
     font-weight: bold;
   }
   
-  select,
+ .post  select,
   input[type='text'],
   input[type='number'],
   textarea {
@@ -89,7 +89,7 @@ form {
     padding-top: 3rem;
   }
   
-  button {
+  .post button {
     padding: 10px 20px;
     font-size: 20px;
     border-radius: 30px;

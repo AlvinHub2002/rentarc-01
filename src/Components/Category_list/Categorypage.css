@@ -1,5 +1,5 @@
 
-  .listing {
+.category-listing {
     display: flex;
     justify-content: space-between;
     padding: 15px;
@@ -7,12 +7,12 @@
     padding-top: 0.5px;
   }
   
-  .prolis aside {
+  .category-listing aside {
     flex-basis: 30%;
     max-width: 250px;
   }
 
-  .filters{
+  .category-filters{
     background-color: #ffffff;
     padding: 50px;
     border-radius: 30px;
@@ -20,17 +20,17 @@
 
   }
   
-  .prolis h2 {
+  .category-listing h2 {
     margin-top: 0;
     padding-bottom: 1rem;
   }
   
- .prolis label {
+ .category-listing label {
     display: block;
     margin-top: 10px;
   }
   
-  .prolis input[type="date"],
+  .category-listing input[type="date"],
   input[type="number"] {
     width: 100%;
     padding: 5px;
@@ -40,7 +40,7 @@
   
 
   
-  section#productList {
+  section#categoryList {
     flex-basis: 80%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -48,7 +48,7 @@
     padding-right: 6rem;
   }
   
-  .product-box {
+  .category-product-box {
     border: 1px solid #abadb4;
     padding: 10px;
     text-align: center;
@@ -59,36 +59,36 @@
 
   }
 
-  .product-box:hover{
+  .category-product-box:hover{
     /* box-shadow: 0 15px 25px rgba(68, 50, 160, 0.7); */
     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.7);
 
   }
   
-  .product-image {
+  .category-product-image {
     width: 200px;
     height: 200px;
     object-fit:contain;
   }
   
-  .product-name {
+  .category-product-name {
     margin-top: 10px;
     font-size: x-large;
   }
   
-  .product-price {
+  .category-product-price {
     font-weight:bold;
     margin-top: 5px;
     font-size: medium;
     
   }
 
-  .product-title{
+  .category-product-title{
     font-size: medium;
   }
 
-  .products-for-rent{
+  .category-products-for-rent{
     padding-top: 7rem;
     padding-left: 22rem;
-    padding-bottom: 1px;
+    padding-bottom: 1.5rem;
   }

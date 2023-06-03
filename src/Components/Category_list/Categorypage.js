@@ -1,22 +1,39 @@
 import React from 'react'
 import  { useState,useEffect } from 'react';
-import './ProductList.css'
+import './Categorypage.css'
 import axios from 'axios';
 import Header from '../Common/Header';
-function ProductList() {
+
+
+
+function Categorypage() {
 
     const [date, setDate] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('');
     const [products, setProducts] = useState([]);
     const [selectedPrice, setSelectedPrice] = useState('');
 
 
     useEffect(() => {
         fetchData();
+      }, [selectedCategory]);
+
+      useEffect(() => {
+        const category = localStorage.getItem('selectedCategory');
+        setSelectedCategory(category || '');
       }, []);
+
+      useEffect(() => {
+        localStorage.setItem('selectedCategory', selectedCategory);
+      }, [selectedCategory]);
  
       const fetchData = async () => {
         try {
-          const response = await axios.get('http://localhost:3000/product-list');
+          const response = await axios.get('http://localhost:3000/Categorypage',{
+             headers: {
+          'x-selected-category': selectedCategory,
+        },
+          });
           setProducts(response.data);
         } catch (error) {
           console.error(error);
@@ -32,13 +49,17 @@ function ProductList() {
       };
 
 
+
+
+
+
   return (
-    <div className='prolis'>
+    <div className='category-page'>
       <Header/>
-      <h2 className='products-for-rent'>Products for Rent</h2>
-    <div className='listing'>
+      <h2 className='category-products-for-rent'>{selectedCategory}</h2>
+    <div className='category-listing'>
     
-      <div className='filters'>
+      <div className='category-filters'>
     <aside>
           <h2 >Filters</h2>
           <label htmlFor="date">Date:</label>
@@ -60,13 +81,13 @@ function ProductList() {
           {/* <button onClick={filterProductsByPrice}>Apply Filter</button> */}
         </aside>
         </div>
-        <section id="productList">
+        <section id="categoryList">
           {filterProductsByPrice().map((product) => (
-            <div className="product-box" key={product.id}>
-              <img className="product-image" src={product.images[0].url} alt={product.name} />
-              <h3 className="product-name">{product.brand}</h3>
-              <p className="product-title">{product.title}</p>
-              <p className="product-price">Rs.{product.price}/day</p>
+            <div className="category-product-box" key={product.id}>
+              <img className="category-product-image" src={product.images[0].url} alt={product.name} />
+              <h3 className="category-product-name">{product.brand}</h3>
+              <p className="category-product-title">{product.title}</p>
+              <p className="category-roduct-price">Rs.{product.price}/day</p>
             </div>
           ))}
         </section>
@@ -75,4 +96,4 @@ function ProductList() {
   )
 }
 
-export default ProductList
+export default Categorypage

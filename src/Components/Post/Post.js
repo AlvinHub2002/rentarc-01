@@ -86,7 +86,6 @@ const Post = () => {
         >
           <option value="">Select a category</option>
           <option value="Photography and Videography">Photography and Videography</option>
-          <option value="Electronics">Electronics</option>
           <option value="Power Tools">Power Tools</option>
           <option value="Home Accessories">Home Accessories</option>
           <option value="Gadgets">Gadgets</option>

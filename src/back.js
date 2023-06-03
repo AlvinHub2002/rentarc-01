@@ -1,9 +1,11 @@
 const express = require('express');
 const collection =require("./mongo")
 const cors =require("cors")
+const products = require("./productModel");
+const cloudinary = require('./cloudinary');
 const app =express()
-app.use(express.json())
-app.use(express.urlencoded({extended: true }))
+app.use(express.json({limit: '100mb'}));
+app.use(express.urlencoded({ limit :'100mb',extended: true }));
 app.use(cors())
 
 app.listen(3000,()=>
@@ -74,3 +76,72 @@ app.post('/Navbar', (req, res) => {
     res.send({ message: 'Logout successful' });
   });
 
+
+
+
+
+  app.post('/Post', async (req, res) => {
+    const { category, brand, title, description, price, location, contact, images } = req.body;
+    try {
+      const uploadedImages = [];
+      for (let i = 0; i < images.length; i++) {
+          const image = images[i];
+          console.log(image)
+          const result = await cloudinary.uploader.upload(image, {
+            folder: 'products',
+          });
+        
+          const imageObj = {
+            public_id: result.public_id,
+            url: result.secure_url,
+          };
+        
+          uploadedImages[i] = imageObj;
+        }
+    console.log(uploadedImages)
+      const product = new products({
+        category,
+        brand,
+        title,
+        description,
+        price,
+        location,
+        contact,
+        images:uploadedImages
+      });
+  
+      const add = await product.save();
+  
+      if (add) {
+        res.json('perfect');
+      } else {
+        res.json('imperfect');
+      }
+    } catch (e) {
+      res.json("notexists");
+    }
+  });
+  
+  
+  app.get('/product-list', async (req, res) => {
+    try {
+      const productData = await products.find({});
+      res.json(productData);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
+
+  app.get('/Categorypage', async (req, res) => {
+    try {
+    const category = req.headers['x-selected-category'];
+      console.log(category)
+      const productData = await products.find({category:category});
+      res.json(productData);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });

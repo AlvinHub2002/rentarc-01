@@ -73,11 +73,13 @@ function Login() {
             <Link to='/Signup'>Register for an account </Link>
         </form>
     </div>
+    <div className='under'>
     <div className='logo'>
             <img src={logo} alt="" />
         </div>
         <div className='foot'>
             <p>RentArc</p>
+        </div>
         </div>
     </div>
   )
