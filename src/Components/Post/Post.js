@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import './Post.css'
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const Post = () => {
+  const history=useNavigate();
+
   const [category, setCategory] = useState('');
   const [brand, setBrand] = useState('');
   const [title, setTitle] = useState('');
@@ -53,6 +56,7 @@ const Post = () => {
     .then(res=>{
       if(res.data==='perfect'){
           alert('Product added successfully')
+          history('/product-list')
       }
       else{
         alert('failed to add product')
@@ -81,9 +85,15 @@ const Post = () => {
           onChange={(e) => setCategory(e.target.value)}
         >
           <option value="">Select a category</option>
+          <option value="Photography and Videography">Photography and Videography</option>
           <option value="Electronics">Electronics</option>
-          <option value="Clothing">Clothing</option>
-          <option value="Furniture">Furniture</option>
+          <option value="Power Tools">Power Tools</option>
+          <option value="Home Accessories">Home Accessories</option>
+          <option value="Gadgets">Gadgets</option>
+          <option value="Medical Equipments">Medical Equipments</option>
+          <option value="Camping and Outdoor">Camping and Outdoor</option>
+
+
           {/* Add more options as needed */}
         </select>
       </div>
@@ -121,7 +131,7 @@ const Post = () => {
       </div>
 
       <div>
-        <label htmlFor="price">Price:</label>
+        <label htmlFor="price">Rent per day:</label>
         <input
           type="number"
           id="price"
@@ -165,7 +175,7 @@ const Post = () => {
       </div>
 
       <div>
-        <label htmlFor="contact">Contact:</label>
+        <label htmlFor="contact">Contact no:</label>
         <input
           type="text"
           id="contact"

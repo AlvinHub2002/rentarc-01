@@ -22,6 +22,7 @@ app.post('/', async (req, res) => {
     const uploadedImages = [];
     for (let i = 0; i < images.length; i++) {
         const image = images[i];
+        console.log(image)
         const result = await cloudinary.uploader.upload(image, {
           folder: 'products',
         });
@@ -54,5 +55,16 @@ app.post('/', async (req, res) => {
     }
   } catch (e) {
     res.json("notexists");
+  }
+});
+
+
+app.get('/product-list', async (req, res) => {
+  try {
+    const productData = await products.find({});
+    res.json(productData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });

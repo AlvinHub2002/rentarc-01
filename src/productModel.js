@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 const uri = "mongodb+srv://Rentarc01:rentarcpassword@rentarc-01.v6gdebq.mongodb.net/Rentarc-01"
-// mongoose.connect("mongodb://localhost:27017",{ useNewUrlParser: true, useUnifiedTopology: true })
 async function connect(){
     try{
         await mongoose.connect(uri);
