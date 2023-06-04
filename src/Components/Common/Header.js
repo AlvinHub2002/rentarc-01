@@ -3,6 +3,7 @@ import profile from './profile.png'
 import axios from 'axios'
 import Logo from './logo.png'
 import './Header.css'
+import { Link } from 'react-router-dom'
 
 function Header() {
     const handleLogout = async () => {
@@ -25,7 +26,8 @@ function Header() {
 				</a>
         <p className='lname'>RentArc</p>
         <div className='content-header'>
-          <a href='amazom.com'>Home</a>
+        {/* <Link to='/Signup'>Register for an account </Link> */}
+          <Link to='/Navbar'>Home</Link>
           <a href='amazom.com'>Contact us</a>
           </div>
           <div className='buttons-header'>
