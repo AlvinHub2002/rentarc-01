@@ -9,7 +9,6 @@ async function connect(){
         console.error(error)
     }
 }
-
 connect();
 const newSchema=new mongoose.Schema({
     Firstname:{
@@ -28,7 +27,8 @@ const newSchema=new mongoose.Schema({
     password:{
         type:String,
         required:true
-    }
+    },
+    role:String,
 })
 
 const collection =mongoose.model("users",newSchema)

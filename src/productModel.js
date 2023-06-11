@@ -16,7 +16,8 @@ const newSchema=new mongoose.Schema({
     title: String,
     description: String,
     price: Number,
-    location: String,
+    district: String,
+    place:String,
     contact: String,
     images: [
         {
@@ -24,7 +25,9 @@ const newSchema=new mongoose.Schema({
           url: { type: String },
         },
       ],
-})
+      Renter:String,
+      postDate:Date,
+    })
 
 const products =mongoose.model("products",newSchema)
 

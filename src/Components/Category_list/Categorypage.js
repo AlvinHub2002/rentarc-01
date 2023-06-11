@@ -3,7 +3,7 @@ import  { useState,useEffect } from 'react';
 import './Categorypage.css'
 import axios from 'axios';
 import Header from '../Common/Header';
-
+import { useNavigate } from 'react-router-dom';
 
 
 function Categorypage() {
@@ -12,6 +12,8 @@ function Categorypage() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [products, setProducts] = useState([]);
     const [selectedPrice, setSelectedPrice] = useState('');
+
+    const history =useNavigate();
 
 
     useEffect(() => {
@@ -49,7 +51,10 @@ function Categorypage() {
       };
 
 
-
+      const handleProductClick = (id) => {
+        localStorage.setItem('productId',id);
+        history('/Product_detail/:id')
+      };
 
 
 
@@ -83,8 +88,8 @@ function Categorypage() {
         </div>
         <section id="categoryList">
           {filterProductsByPrice().map((product) => (
-            <div className="category-product-box" key={product.id}>
-              <img className="category-product-image" src={product.images[0].url} alt={product.name} />
+            <div className="category-product-box" key={product._id}  onClick={()=>handleProductClick(product._id)}>
+              <img className="category-product-image" src={product.images[0]?.url} alt={product.name} />
               <h3 className="category-product-name">{product.brand}</h3>
               <p className="category-product-title">{product.title}</p>
               <p className="category-roduct-price">Rs.{product.price}/day</p>

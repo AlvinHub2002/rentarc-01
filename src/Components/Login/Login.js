@@ -27,9 +27,15 @@ function Login() {
                 email,password
              })
              .then(res=>{
-                if(res.data==='success'){
+                if(res.data==='success-user'){
+                    localStorage.setItem('LoggedIn', email);
                     navigate('/Navbar')
                 }
+                else if(res.data==='success-admin'){
+                    localStorage.setItem('LoggedIn', email);
+                    navigate('/AdminPortal')
+                }
+
                 else if(res.data==='wrongpass'){
                     alert("wrong credentials")
                 }

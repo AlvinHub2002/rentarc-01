@@ -1,7 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 import './Post.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+
+const districtsInKerala = [
+  'Alappuzha',
+  'Ernakulam',
+  'Idukki',
+  'Kannur',
+  'Kasaragod',
+  'Kollam',
+  'Kottayam',
+  'Kozhikode',
+  'Malappuram',
+  'Palakkad',
+  'Pathanamthitta',
+  'Thiruvananthapuram',
+  'Thrissur',
+  'Wayanad'
+];
+
+
 const Post = () => {
   const history=useNavigate();
 
@@ -10,8 +30,10 @@ const Post = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [location, setLocation] = useState('');
+  const [district, setDistrict] = useState('');
+  const [place, setPlace] = useState('');
   const [contact, setContact] = useState('');
+  const [postDate, setPostDate] = useState('');
   const [images, setImages] = useState([]);
 
   const handleImageUpload = (event, index) => {
@@ -27,10 +49,20 @@ const Post = () => {
       });
     };
   
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file); 
   };
   console.log(images)
 
+  useEffect(() => {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('en-US');
+    setPostDate(formattedDate);
+  }, []);
+
+  // useEffect(() => {
+  //   const username=localStorage.getItem('LoggedIn');
+  // }, []);
+  // console.log(username)
 
 
  const handleSubmit =async (event)=>{
@@ -41,15 +73,19 @@ const Post = () => {
     title,
     description,
     price,
-    location,
+    district,
+    place,
     contact,
-    images 
+    images,
+    postDate,
+    username: localStorage.getItem('LoggedIn'),
   };
-//  console.log(formData.image)
-// console.log(formData.images)
+  console.log(formData.username)
+
+
   try{
   
-    await axios.post('http://localhost:3000/', formData, {
+    await axios.post('http://localhost:3000/Post', formData, {
      
     })
 
@@ -74,7 +110,7 @@ const Post = () => {
 
   return (
     <div className='post'>
-    <form onSubmit={handleSubmit} method='POST' enctype="multipart/form-data">
+    <form onSubmit={handleSubmit} method='POST' encType="multipart/form-data">
     <h1 className='product-detail-heading'>Product Details</h1>
       <div className='product-details'>
         <label htmlFor="category">Category:</label>
@@ -162,16 +198,39 @@ const Post = () => {
         </div>
       </div>
 
+
       <div>
-        <label htmlFor="location">Location:</label>
+          <label htmlFor="location">District:</label>
+          <select
+            id="location"
+            value={district}
+            name="location"
+            onChange={(e) => setDistrict(e.target.value)}
+          >
+            <option value="">Select a location</option>
+            {districtsInKerala.map((district) => (
+              <option key={district} value={district}>
+                {district}
+              </option>
+            ))}
+          </select>
+        </div>
+
+
+        <div>
+        <label htmlFor="contact">Place:</label>
         <input
           type="text"
-          id="location"
-          name='location'
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
+          id="place"
+          name='place'
+          value={place}
+          onChange={(e) => setPlace(e.target.value)}
         />
       </div>
+
+
+
+
 
       <div>
         <label htmlFor="contact">Contact no:</label>
@@ -183,6 +242,19 @@ const Post = () => {
           onChange={(e) => setContact(e.target.value)}
         />
       </div>
+
+      <div>
+          <label htmlFor="postDate">Post Date:</label>
+          <input
+            type="text"
+            id="postDate"
+            name="postDate"
+            value={postDate}
+            readOnly
+          />
+        </div>
+
+
       <div className='post-button'>
       <button type="submit">Post</button>
       </div>

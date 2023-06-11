@@ -4,9 +4,11 @@ import Post from './Components/Post/Post'
 import Navbar from './Components/Navbar/Navbar'
 import Login from './Components/Login/Login'
 import { Routes, Route } from 'react-router-dom';
+import ProductDetail from './Components/Product_detail/ProductDetail';
 import ProductList from './Components/Product_Listing/ProductList';
 import Signup from './Components/Signup/Signup'
 import Categorypage from './Components/Category_list/Categorypage'
+import AdminPortal from './Components/Admin/Admin'
 function App() {
   return (
   <div className='app'>
@@ -16,8 +18,10 @@ function App() {
       <Route path='/Navbar' element={<Navbar/>} />
       <Route path='/Post' element={<Post/>} />
       <Route path='/product-list' element={<ProductList/>} />
+      <Route path='/Product_detail/:id' element={<ProductDetail/>} />
       <Route path='/Categorypage' element={<Categorypage/>} />
-    </Routes>
+      <Route path='/AdminPortal' element={<AdminPortal/>} />
+      </Routes>
   </div>
 )
 }

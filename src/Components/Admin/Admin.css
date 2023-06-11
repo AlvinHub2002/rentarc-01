@@ -1,0 +1,72 @@
+.admin-portal {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar-admin-portal {
+    width: 250px;
+    background-color: #b3b3b3;
+    padding: 20px;
+  }
+  
+  
+  .sidebar-nav-admin-portal ul {
+    list-style:none;
+    padding-top:7rem;
+    margin: 0;
+    line-height: 30px;
+  }
+
+  .sidebar-nav-admin-portal li{
+    height: 70px;
+  }
+  
+.sidebar-nav-admin-portal button{
+  padding: 10px 20px;
+  background-color: #9d9d9d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  width:auto;
+}
+
+  .sidebar-nav-admin-portal li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-nav-admin-portal a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .sidebar-nav-admin-portal a.active {
+    color: #ffffff;
+  }
+  
+  .main-content-admin-portal {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .header-admin-portal {
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .header-container-admin-portal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .header-title-admin-portal {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+
+  

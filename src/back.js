@@ -23,9 +23,15 @@ app.post("/",async(req,res)=>{
 
     try{
         const check=await collection.findOne({email:email})
+        console.log(check.role)
         if (check){
             if(check.password===password){
-                res.json('success')
+              if(check.role==='admin'){
+                res.json('success-admin')
+              }
+              else{
+                res.json('success-user')
+              }
             }
             else{
                 res.json('wrongpass')
@@ -81,7 +87,8 @@ app.post('/Navbar', (req, res) => {
 
 
   app.post('/Post', async (req, res) => {
-    const { category, brand, title, description, price, location, contact, images } = req.body;
+    const { category, brand, title, description, price, district,place, contact, images,postDate } = req.body;
+    const username = req.body.username;
     try {
       const uploadedImages = [];
       for (let i = 0; i < images.length; i++) {
@@ -97,7 +104,16 @@ app.post('/Navbar', (req, res) => {
           };
         
           uploadedImages[i] = imageObj;
-        }
+      }
+
+      const user = await collection.findOne({ email:username });
+
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+
+
+
     console.log(uploadedImages)
       const product = new products({
         category,
@@ -105,9 +121,12 @@ app.post('/Navbar', (req, res) => {
         title,
         description,
         price,
-        location,
+        district,
+        place,
         contact,
-        images:uploadedImages
+        images:uploadedImages,
+        Renter:user.email,
+        postDate,
       });
   
       const add = await product.save();
@@ -145,3 +164,25 @@ app.post('/Navbar', (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     }
   });
+
+
+  app.get(`/Product_detail/:id`, async (req, res) => {
+    const { id } = req.params;
+    try {
+      const product = await products.findOne({ _id: id });
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      const renter=await collection.findOne({ email:product.Renter});
+  
+      const response = {
+        product,renter
+      }
+      //console.log(response)
+      res.json(response);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
+  
