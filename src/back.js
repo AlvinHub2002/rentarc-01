@@ -185,4 +185,38 @@ app.post('/Navbar', (req, res) => {
       res.status(500).json({ error: 'Server error' });
     }
   });
+
+
+
+  app.get('/AdminPortal', async (req, res) => {
+    try {
+      const productData = await products.find({});
+      res.json(productData);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
+
+
+  app.get(`/Confirmation/:id`, async (req, res) => {
+    const { id } = req.params;
+    try {
+      const product = await products.findOne({ _id: id });
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      const renter=await collection.findOne({ email:product.Renter});
+  
+      const response = {
+        product,renter
+      }
+      //console.log(response)
+      res.json(response);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
   

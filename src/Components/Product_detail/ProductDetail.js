@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import Header from '../Common/Header';
 // import { useParams } from 'react-router-dom';
 import './ProductDetail.css'
@@ -9,7 +10,7 @@ function ProductDetail() {
     const [selectedImage, setSelectedImage] = useState('');
     const [name, setName] = useState('')
     const [email,setEmail]=useState('')
-
+    const history=useNavigate();
 
     useEffect(() => {
       const productId = localStorage.getItem('productId');
@@ -38,6 +39,12 @@ function ProductDetail() {
 
       if (!product) {
         return <div>Loading...</div>;
+      }
+
+
+      const handleRentNow= ()=>{
+
+        history('/Confirmation/:id')
       }
 
   return (
@@ -70,7 +77,8 @@ function ProductDetail() {
           <h2>{product.brand}</h2>
           <p className='product-detail-card-title'>{product.title}</p>
           <p className='product-detail-card-price'>Rent per day:<span className='product-detail-card-price-span'> Rs.{product.price}</span></p>
-          <p className='product-detail-card-location'>Location: {product.location}</p>
+          <p className='product-detail-card-location'>District: {product.district}</p>
+          <p className='product-detail-card-location'>Place: {product.place}</p>
         </div>
         <div className='renter-details-main'>
         <div className="renter-details">
@@ -91,7 +99,7 @@ function ProductDetail() {
         </div>
 
         <div className='rent-button-main'>
-        <button className="rent-button">Rent Now</button>
+        <button className="rent-button" onClick={handleRentNow}>Rent Now</button>
         </div>
         </div>
     </div>

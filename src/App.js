@@ -9,6 +9,7 @@ import ProductList from './Components/Product_Listing/ProductList';
 import Signup from './Components/Signup/Signup'
 import Categorypage from './Components/Category_list/Categorypage'
 import AdminPortal from './Components/Admin/Admin'
+import Confirmation from './Components/Confirmation/Confirmation'
 function App() {
   return (
   <div className='app'>
@@ -21,6 +22,8 @@ function App() {
       <Route path='/Product_detail/:id' element={<ProductDetail/>} />
       <Route path='/Categorypage' element={<Categorypage/>} />
       <Route path='/AdminPortal' element={<AdminPortal/>} />
+      <Route path='/AdminPortal' element={<AdminPortal/>} />
+      <Route path='/Confirmation/:id' element={<Confirmation/>} />
       </Routes>
   </div>
 )

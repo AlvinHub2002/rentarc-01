@@ -19,6 +19,12 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
 
   }
+
+  .category-filters select{
+    border-radius: 20px;
+    height: 30px;
+    border: 1.5px solid black;
+  }
   
   .category-listing h2 {
     margin-top: 0;

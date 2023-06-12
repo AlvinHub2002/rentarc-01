@@ -6,9 +6,26 @@ import Header from '../Common/Header';
 import { useNavigate } from 'react-router-dom';
 
 
+const districtsInKerala = [
+  'Alappuzha',
+  'Ernakulam',
+  'Idukki',
+  'Kannur',
+  'Kasaragod',
+  'Kollam',
+  'Kottayam',
+  'Kozhikode',
+  'Malappuram',
+  'Palakkad',
+  'Pathanamthitta',
+  'Thiruvananthapuram',
+  'Thrissur',
+  'Wayanad'
+];
+
 function Categorypage() {
 
-    const [date, setDate] = useState('');
+    const [location, setLocation] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
     const [products, setProducts] = useState([]);
     const [selectedPrice, setSelectedPrice] = useState('');
@@ -42,12 +59,18 @@ function Categorypage() {
         }
       };
 
-      const filterProductsByPrice = () => {
-        if (selectedPrice === '') {
-          return products; 
-        } else  {
-          return products.filter(product => product.price <= selectedPrice);
+      const applyFilters = () => {
+        let filteredProducts = products;
+      
+        if (location !== '') {
+          filteredProducts = filteredProducts.filter((product) => product.district === location);
         }
+      
+        if (selectedPrice !== '') {
+          filteredProducts = filteredProducts.filter((product) => product.price <= selectedPrice);
+        }
+      
+        return filteredProducts;
       };
 
 
@@ -67,14 +90,20 @@ function Categorypage() {
       <div className='category-filters'>
     <aside>
           <h2 >Filters</h2>
-          <label htmlFor="date">Date:</label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
+          <label htmlFor="date">Location</label>
+          <select
+            id="location"
+            value={location}
+            name="location"
+            onChange={(e) => setLocation(e.target.value)}
+          >
+            <option value="">Select a location</option>
+            {districtsInKerala.map((location) => (
+              <option key={location} value={location}>
+                {location}
+              </option>
+            ))}
+          </select>
           <label htmlFor="price">Price below:</label>
           <input
             type="number"
@@ -87,7 +116,7 @@ function Categorypage() {
         </aside>
         </div>
         <section id="categoryList">
-          {filterProductsByPrice().map((product) => (
+          {applyFilters().map((product) => (
             <div className="category-product-box" key={product._id}  onClick={()=>handleProductClick(product._id)}>
               <img className="category-product-image" src={product.images[0]?.url} alt={product.name} />
               <h3 className="category-product-name">{product.brand}</h3>

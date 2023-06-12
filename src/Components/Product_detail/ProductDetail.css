@@ -152,8 +152,7 @@
   .product-description-main{
     /* padding-top: ; */
     padding-left: 8rem;
-    width: 70%;
-    
+    padding-bottom: 5rem;
   }
 
   .product-description{
@@ -161,7 +160,7 @@
     height: auto;
     padding: 30px;
     border-radius: 15px;
-    max-width: 900px;
+    width:auto;
   }
   
   .product-description h3 {
@@ -170,6 +169,7 @@
   
   .product-description p {
     line-height: 1.5;
+    max-width: 900px;
   }
   
   .below-details-container{
