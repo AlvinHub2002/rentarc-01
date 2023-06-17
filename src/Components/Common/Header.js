@@ -19,7 +19,6 @@ function Header() {
 
   return (
     <div >
-      <div>baaii</div>
           <header class="header">
 			<nav class="nav container">
 				<a href="amazon.com" class="nav__logo">
