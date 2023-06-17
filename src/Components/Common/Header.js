@@ -19,6 +19,7 @@ function Header() {
 
   return (
     <div >
+      <h1>hai</h1>
           <header class="header">
 			<nav class="nav container">
 				<a href="amazon.com" class="nav__logo">
