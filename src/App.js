@@ -10,6 +10,7 @@ import Signup from './Components/Signup/Signup'
 import Categorypage from './Components/Category_list/Categorypage'
 import AdminPortal from './Components/Admin/Admin'
 import Confirmation from './Components/Confirmation/Confirmation'
+import Profile from './Components/Profile/Profile'
 function App() {
   return (
   <div className='app'>
@@ -24,6 +25,7 @@ function App() {
       <Route path='/AdminPortal' element={<AdminPortal/>} />
       <Route path='/AdminPortal' element={<AdminPortal/>} />
       <Route path='/Confirmation/:id' element={<Confirmation/>} />
+      <Route path='/Profile' element={<Profile/>} />
       </Routes>
   </div>
 )

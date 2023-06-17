@@ -1,0 +1,56 @@
+.sidebar-profile{
+    background-color: rgb(230, 230, 230);
+    height: 388px;
+    width: 416px;
+    margin-left: 40px;
+    margin-top: 25px;
+    float: left;
+    border-radius: 20px;
+}
+.side-profile{
+    margin-top: 15px;
+    float: left;
+    margin-left: 66px;
+    cursor: pointer;
+}
+
+.mainprt-profile{
+    float: left;
+    height: 1000px;
+    width: 65%;
+    background-color: rgb(186, 186, 186);
+    margin-left: 40px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+}
+
+.personal-info{
+    padding: 40px;
+    
+}
+
+.personal-info-details{
+    margin-top: 5rem;
+    max-width: 80%;
+    background-color: rgb(217, 217, 217);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.mphead-personal-info{
+    font-weight: bold;
+    display: inline;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 15rem;
+    }
+
+.mphead{
+    margin-top: 10px;
+    margin-left: 10px;
+    float: left;
+}
+
+

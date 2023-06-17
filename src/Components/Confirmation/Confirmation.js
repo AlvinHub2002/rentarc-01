@@ -71,6 +71,7 @@ function Confirmation() {
                     <h3 className="product-title-confirm">{product.title}</h3>
                     <p className="rent-per-day-confirm">{`Rent per Day: Rs.${product.price}`}</p>
                     <p className="owner-confirm">Owner: {name}</p>
+                    <p className="contact-confirm">Contact: {product.contact}</p>
                     <p className="location-confirm">Location: {`${product.place}, ${product.district}`}</p>
                     <div className="rented-period-confirm">
                       <label htmlFor="fromDate">From Date:</label>

@@ -3,6 +3,7 @@ const collection =require("./mongo")
 const cors =require("cors")
 const products = require("./productModel");
 const cloudinary = require('./cloudinary');
+const { Collection } = require('mongoose');
 const app =express()
 app.use(express.json({limit: '100mb'}));
 app.use(express.urlencoded({ limit :'100mb',extended: true }));
@@ -214,6 +215,22 @@ app.post('/Navbar', (req, res) => {
       }
       //console.log(response)
       res.json(response);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
+  
+
+  app.get('/Profile', async (req, res) => {
+    const loggedin = req.query.loggedin;
+    try {
+      const profile = await collection.findOne({ email:loggedin });
+      if (!profile) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      //console.log(response)
+      res.json(profile);
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Server error' });

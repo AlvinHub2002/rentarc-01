@@ -16,7 +16,7 @@ import { useEffect} from 'react';
 import { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom'
 
 
 function Navbar() {
@@ -95,9 +95,9 @@ function Navbar() {
           </div>
           <div className='buttons'>
           <button class="button" aria-label="login" onClick={handleLogout}>Log out</button>
-				<a href='amazon.com'>
+				<Link to={'/Profile'}>
           <img className='profile-icon' src={profile} alt='amazon.com'></img>
-        </a>
+        </Link>
         </div>
 			</nav>
 		</header>
