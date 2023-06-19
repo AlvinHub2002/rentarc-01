@@ -1,32 +1,53 @@
 import React, { useState } from 'react';
 import './Admin.css';
 import  { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Product_Listing/ProductList.css'
 
-const VerifiedProducts = () => {
-  const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        fetchData();
-      }, []);
- 
-      const fetchData = async () => {
-        try {
-          const response = await axios.get('http://localhost:3000/AdminPortal');
-          setProducts(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
+const AdminPortal = () => {
+  const [selectedContent, setSelectedContent] = useState('');
+  const [products, setProducts] = useState([]);
+  const [unverified, setUnverified] = useState([]);
+  const history =useNavigate();
+
+
+
+useEffect(() => {
+  fetchData();
+}, []);
+
+const fetchData = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/AdminPortal');
+    setProducts(response.data.productData);
+    setUnverified(response.data.unverifiedProduct)
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const handleProductClick = (id) => {
+  localStorage.setItem('productId',id);
+  history('/Product_detail/:id')
+};
+
+const handleUnverifiedProductClick=(id)=>{
+  localStorage.setItem('productId',id);
+  history('/Unverified/:id')
+}
+
+
+const VerifiedProducts = () => {
 
   return (
-    <div className='prolis'>
-    <h2 className='products-for-rent'>verified Products</h2>
-  <div className='listing'>
+    <div className='prolis-admin'>
+    <h2 className='verified-product'>Verified Products</h2>
+  <div className='listing-admin'>
       <section id="productList">
         {products.map((product) => (
-          <div className="product-box" key={product._id} >
+          <div className="product-box" key={product._id} onClick={()=>handleProductClick(product._id)}>
             <img className="product-image" src={product.images[0]?.url} alt={product.name} />
             <h3 className="product-name">{product.brand}</h3>
             <p className="product-title">{product.title}</p>
@@ -39,21 +60,43 @@ const VerifiedProducts = () => {
   );
 };
 
+
 const UnverifiedProducts = () => {
-    return(
-      <h2>unverified product</h2>
-    )
+  return (
+    <div className='prolis-admin'>
+    <h2 className='verified-product'>Unverified Products</h2>
+  <div className='listing-admin'>
+      <section id="productList">
+        {unverified.map((product) => (
+          <div className="product-box" key={product._id} onClick={()=>handleUnverifiedProductClick(product._id)}>
+            <img className="product-image" src={product.images[0]?.url} alt={product.name} />
+            <h3 className="product-name">{product.brand}</h3>
+            <p className="product-title">{product.title}</p>
+            <p className="product-price">Rs.{product.price}/day</p>
+          </div>
+        ))}
+      </section>
+  </div>
+  </div>
+  );
+  
 };
 
-const AdminPortal = () => {
-  const [selectedContent, setSelectedContent] = useState('dashboard');
+const Dashboard=()=>{
+
+}
+
+
 
   const handleContentChange = (content) => {
     setSelectedContent(content);
   };
 
   let content;
-  if (selectedContent === 'verified-products') {
+   if (selectedContent === 'dashboard') {
+    content = <Dashboard />;
+   }
+  else if (selectedContent === 'verified-products') {
     content = <VerifiedProducts />;
   } else if (selectedContent === 'unverified-products') {
     content = <UnverifiedProducts />;

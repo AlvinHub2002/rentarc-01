@@ -2,12 +2,14 @@
     display: flex;
     height: 100vh;
   }
+
   
   .sidebar-admin-portal {
     width: 250px;
-    background-color: #b3b3b3;
+    background-color: #ffffff;
     padding: 20px;
-    height:auto;
+    height: auto;
+    border-right: 0.5px solid rgb(173, 173, 173);
   }
   
   
@@ -24,7 +26,7 @@
   
 .sidebar-nav-admin-portal button{
   padding: 10px 20px;
-  background-color: #9d9d9d;
+  background-color: #818181;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -67,6 +69,15 @@
   .header-title-admin-portal {
     font-size: 24px;
     font-weight: bold;
+  }
+
+
+  .prolis-admin{
+    margin-top: 3rem;
+  }
+
+  .verified-product{
+    margin-bottom: 2rem;
   }
   
 

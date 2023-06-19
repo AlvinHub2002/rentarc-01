@@ -19,6 +19,6 @@ const newSchema=new mongoose.Schema({
       postDate:Date,
     })
 
-const products =mongoose.model("products",newSchema)
+const unverified =mongoose.model("unverified",newSchema)
 
-module.exports=products
+module.exports=unverified

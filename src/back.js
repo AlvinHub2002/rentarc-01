@@ -2,6 +2,7 @@ const express = require('express');
 const collection =require("./mongo")
 const cors =require("cors")
 const products = require("./productModel");
+const unverified =require('./unverifiedModel');
 const cloudinary = require('./cloudinary');
 const { Collection } = require('mongoose');
 const app =express()
@@ -116,7 +117,7 @@ app.post('/Navbar', (req, res) => {
 
 
     console.log(uploadedImages)
-      const product = new products({
+      const unverifiedproduct = new unverified({
         category,
         brand,
         title,
@@ -130,7 +131,7 @@ app.post('/Navbar', (req, res) => {
         postDate,
       });
   
-      const add = await product.save();
+      const add = await unverifiedproduct.save();
   
       if (add) {
         res.json('perfect');
@@ -192,13 +193,16 @@ app.post('/Navbar', (req, res) => {
   app.get('/AdminPortal', async (req, res) => {
     try {
       const productData = await products.find({});
-      res.json(productData);
+      const unverifiedProduct = await unverified.find({});
+      const response = {
+        productData,unverifiedProduct
+      }
+      res.json(response);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal server error' });
     }
   });
-
 
 
   app.get(`/Confirmation/:id`, async (req, res) => {
@@ -237,3 +241,61 @@ app.post('/Navbar', (req, res) => {
     }
   });
   
+
+  app.get(`/Unverified/:id`, async (req, res) => {
+    const { id } = req.params;
+    try {
+      const product = await unverified.findOne({ _id: id });
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      const renter=await collection.findOne({ email:product.Renter});
+  
+      const response = {
+        product,renter
+      }
+      //console.log(response)
+      res.json(response);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
+
+
+
+
+  app.post('/Unverified', async (req, res) => {
+    const { category, brand, title, description, price, district,place, contact, images,Renter,postDate } = req.body;
+    try{
+      console.log(req.body.Renter)
+
+      const unverifiedproduct = new products({
+        category,
+        brand,
+        title,
+        description,
+        price,
+        district,
+        place,
+        contact,
+        images,
+        Renter,
+        postDate,
+      });
+  
+      const add = await unverifiedproduct.save();
+      console.log(unverifiedproduct._id)
+      // await unverified.deleteOne({_id:'648df552a1ee48ddbe33b2cb'});
+
+  
+      if (add) {
+        res.json('perfect');
+
+      } else {
+        res.json('imperfect');
+      }
+    } catch (e) {
+      res.json("notexists");
+    }
+  });

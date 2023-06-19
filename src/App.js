@@ -11,6 +11,7 @@ import Categorypage from './Components/Category_list/Categorypage'
 import AdminPortal from './Components/Admin/Admin'
 import Confirmation from './Components/Confirmation/Confirmation'
 import Profile from './Components/Profile/Profile'
+import Unverified from './Components/Admin/AdminUnverifiedProduct/Unverified'
 function App() {
   return (
   <div className='app'>
@@ -26,6 +27,9 @@ function App() {
       <Route path='/AdminPortal' element={<AdminPortal/>} />
       <Route path='/Confirmation/:id' element={<Confirmation/>} />
       <Route path='/Profile' element={<Profile/>} />
+      <Route path='/Unverified/:id' element={<Unverified/>} />
+
+
       </Routes>
   </div>
 )
