@@ -12,11 +12,13 @@
     float: left;
     margin-left: 66px;
     cursor: pointer;
+
+    
 }
 
 .mainprt-profile{
     float: left;
-    height: 1000px;
+    height: auto;
     width: 65%;
     background-color: rgb(186, 186, 186);
     margin-left: 40px;
@@ -52,5 +54,3 @@
     margin-left: 10px;
     float: left;
 }
-
-

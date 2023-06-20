@@ -5,7 +5,7 @@ import axios from 'axios';
 function Profile() {
   const [activeTab, setActiveTab] = useState("personel");
   const [userDetails, setUserDetails] = useState(null);
-
+  const [products, setProducts] = useState([]);
   useEffect(() => {
     const loggedin = localStorage.getItem('LoggedIn');
     if (loggedin) {
@@ -16,7 +16,8 @@ function Profile() {
   const fetchUserDetails = async (loggedin) => {
     try {
       const response = await axios.get(`http://localhost:3000/Profile?loggedin=${loggedin}`); 
-      setUserDetails(response.data);
+      setUserDetails(response.data.profile);
+      setProducts(response.data.ownedproduct )
     } catch (error) {
       console.error('Error fetching user details:', error);
     }
@@ -59,36 +60,62 @@ function Profile() {
                 <hr/>
                 <p>Email: <br/><br/>{userDetails.email}</p>
                 <hr/>
+                <p>Phone: <br/><br/>{userDetails.email}</p>
+                <hr/>
+                <p>Address: <br/><br/>{userDetails.email}</p>
+                <hr/>
+
                 {/* Add more user details here */}
               </div>
               </div>
             )}
 
-            {activeTab === "products" && (
+            {activeTab === "products" && Array.isArray(products) && products.length > 0 && (
               <div>
-                <h5 className="mphead">My Products</h5>
-                {/* Display user's products */}
+                <div className='personal-info'>
+                <h1 className="mphead-personal-info">My Products</h1>
+                <div className='listing-admin'>
+                <section id="productList">
+                {products.map((product) => (
+                  <div className="product-box" key={product._id} >
+                   <img className="product-image" src={product.images[0]?.url} alt={product.name} />
+                   <h3 className="product-name">{product.brand}</h3>
+                    <p className="product-title">{product.title}</p>
+                    <p className="product-price">Rs.{product.price}/day</p>
+          </div>
+        ))}
+      </section>
+  </div>
+                  </div>
               </div>
             )}
 
             {activeTab === "rentals" && (
               <div>
-                <h5 className="mphead">My Rentals</h5>
-                {/* Display user's rentals */}
+                <div className='personal-info'>
+                <h1 className="mphead-personal-info">My Rentals</h1>
+                </div>
               </div>
             )}
 
             {activeTab === "cart" && (
               <div>
-                <h5 className="mphead">Cart Items</h5>
-                {/* Display user's cart items */}
+                <div className='personal-info'>
+                <h1 className="mphead-personal-info">Cart items</h1>
+                </div>
               </div>
             )}
 
             {activeTab === "payment" && (
-              <div>
-                <h5 className="mphead">Payments</h5>
-                {/* Display user's payment history */}
+              <div> 
+                <div className='personal-info'>
+                <h1 className="mphead-personal-info">Payments</h1>
+                <div className='personal-info-details'>
+                <p></p>
+                <hr/>
+                
+              </div>
+                  </div>
               </div>
             )}
 

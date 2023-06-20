@@ -230,11 +230,16 @@ app.post('/Navbar', (req, res) => {
     const loggedin = req.query.loggedin;
     try {
       const profile = await collection.findOne({ email:loggedin });
-      if (!profile) {
-        return res.status(404).json({ error: 'Product not found' });
+      const ownedproduct = await products.find({Renter: loggedin});
+      console.log(ownedproduct)
+      if(!ownedproduct){
+        return res.status(404).json({ error: 'Product not found' })
       }
-      //console.log(response)
-      res.json(profile);
+      if (!profile) {
+        return res.status(404).json({ error: 'Profile not found' });
+      }
+      const response={profile,ownedproduct}
+      res.json(response);
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Server error' });
