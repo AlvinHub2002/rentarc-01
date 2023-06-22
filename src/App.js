@@ -12,6 +12,7 @@ import AdminPortal from './Components/Admin/Admin'
 import Confirmation from './Components/Confirmation/Confirmation'
 import Profile from './Components/Profile/Profile'
 import Unverified from './Components/Admin/AdminUnverifiedProduct/Unverified'
+import MyProduct_detail from './Components/Profile/MyProduct-detail/MyProduct_detail'
 function App() {
   return (
   <div className='app'>
@@ -28,6 +29,7 @@ function App() {
       <Route path='/Confirmation/:id' element={<Confirmation/>} />
       <Route path='/Profile' element={<Profile/>} />
       <Route path='/Unverified/:id' element={<Unverified/>} />
+      <Route path='/MyProduct_detail/:id' element={<MyProduct_detail/>} />
 
 
       </Routes>

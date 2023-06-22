@@ -1,6 +1,7 @@
 const express = require('express');
 const collection =require("./mongo")
 const cors =require("cors")
+const mongoose = require('mongoose');
 const products = require("./productModel");
 const unverified =require('./unverifiedModel');
 const cloudinary = require('./cloudinary');
@@ -304,3 +305,40 @@ app.post('/Navbar', (req, res) => {
       res.json("notexists");
     }
   });
+
+
+
+  app.get(`/MyProduct_detail/:id`, async (req, res) => {
+    const { id } = req.params;
+    try {
+      const product = await products.findOne({ _id: id });
+      console.log(id)
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      const renter=await collection.findOne({ email:product.Renter});
+  
+      const response = {
+        product,renter
+      }
+      //console.log(response)
+      res.json(response);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
+
+
+  app.delete(`/MyProduct_detail/:id`, async (req, res) => {
+    const {id} = req.params;
+    console.log(id)
+    try {
+      await products.findOneAndDelete({ _id: id });
+      res.status(200).json('Product deleted successfully' );
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      res.status(500).json('Failed to delete product' );
+    }
+  });
+  

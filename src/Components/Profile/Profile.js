@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import "./Profile.css";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
   const [activeTab, setActiveTab] = useState("personel");
   const [userDetails, setUserDetails] = useState(null);
   const [products, setProducts] = useState([]);
+  const history= useNavigate()
   useEffect(() => {
     const loggedin = localStorage.getItem('LoggedIn');
     if (loggedin) {
@@ -25,6 +27,11 @@ function Profile() {
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+  };
+
+  const handleProductClick = (id) => {
+    localStorage.setItem('productId',id);
+    history('/MyProduct_detail/:id')
   };
 
   return (
@@ -77,7 +84,7 @@ function Profile() {
                 <div className='listing-admin'>
                 <section id="productList">
                 {products.map((product) => (
-                  <div className="product-box" key={product._id} >
+                  <div className="product-box" key={product._id} onClick={()=>handleProductClick(product._id)} >
                    <img className="product-image" src={product.images[0]?.url} alt={product.name} />
                    <h3 className="product-name">{product.brand}</h3>
                     <p className="product-title">{product.title}</p>
