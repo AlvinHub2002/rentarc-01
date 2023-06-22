@@ -19,7 +19,7 @@ function Profile() {
     try {
       const response = await axios.get(`http://localhost:3000/Profile?loggedin=${loggedin}`); 
       setUserDetails(response.data.profile);
-      setProducts(response.data.ownedproduct )
+      setProducts(response.data.ownedproduct );
     } catch (error) {
       console.error('Error fetching user details:', error);
     }
