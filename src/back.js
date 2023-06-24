@@ -399,3 +399,25 @@ app.post('/Navbar', (req, res) => {
       res.status(500).json({ error: 'Failed to create payment order' });
     }
   });
+
+
+
+
+
+  app.get(`/Rating/:id`, async (req, res) => {
+    const { id } = req.params;
+    try {
+      const product = await products.findOne({ _id: id });
+      console.log(product)
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      // const renter=await collection.findOne({ email:product.Renter});
+  
+      //console.log(response)
+      res.json(product);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });

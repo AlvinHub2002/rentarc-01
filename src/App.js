@@ -1,9 +1,9 @@
 import React from 'react'
 import './App.css'
+import { Routes, Route } from 'react-router-dom';
 import Post from './Components/Post/Post'
 import Navbar from './Components/Navbar/Navbar'
 import Login from './Components/Login/Login'
-import { Routes, Route } from 'react-router-dom';
 import ProductDetail from './Components/Product_detail/ProductDetail';
 import ProductList from './Components/Product_Listing/ProductList';
 import Signup from './Components/Signup/Signup'
@@ -13,6 +13,7 @@ import Confirmation from './Components/Confirmation/Confirmation'
 import Profile from './Components/Profile/Profile'
 import Unverified from './Components/Admin/AdminUnverifiedProduct/Unverified'
 import MyProduct_detail from './Components/Profile/MyProduct-detail/MyProduct_detail'
+import Rating from './Components/StarRating/Rating';
 function App() {
   return (
   <div className='app'>
@@ -30,8 +31,7 @@ function App() {
       <Route path='/Profile' element={<Profile/>} />
       <Route path='/Unverified/:id' element={<Unverified/>} />
       <Route path='/MyProduct_detail/:id' element={<MyProduct_detail/>} />
-
-
+      <Route path='/Rating/:id' element={<Rating/>} />
       </Routes>
   </div>
 )

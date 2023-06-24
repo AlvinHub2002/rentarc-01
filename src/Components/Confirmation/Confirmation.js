@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Confirmation.css';
-
-
-
+import { useNavigate } from 'react-router-dom';
 
 function Confirmation() {
+  const history=useNavigate()
+
   const [product, setProduct] = useState(null);
   const [name, setName] = useState('');
   const [rentedPeriod, setRentedPeriod] = useState({
@@ -79,9 +79,8 @@ function Confirmation() {
       description: 'Payment for Product Rental',
       order_id: response.data.id,
       handler: function (response) {
-        // Handle the payment success
         console.log('Payment Successful:', response);
-        // Add your logic here to mark the order as paid or perform any other necessary actions
+        history('/Rating/:id')
       },
       prefill: {
         name: 'Alvin',
