@@ -77,25 +77,32 @@ function Profile() {
               </div>
             )}
 
-            {activeTab === "products" && Array.isArray(products) && products.length > 0 && (
-              <div>
-                <div className='personal-info'>
-                <h1 className="mphead-personal-info">My Products</h1>
-                <div className='listing-admin'>
-                <section id="productList">
-                {products.map((product) => (
-                  <div className="product-box" key={product._id} onClick={()=>handleProductClick(product._id)} >
-                   <img className="product-image" src={product.images[0]?.url} alt={product.name} />
-                   <h3 className="product-name">{product.brand}</h3>
-                    <p className="product-title">{product.title}</p>
-                    <p className="product-price">Rs.{product.price}/day</p>
-          </div>
-        ))}
-      </section>
-  </div>
-                  </div>
+
+{activeTab === "products" && Array.isArray(products) && (
+  <div>
+    <div className='personal-info'>
+      <h1 className="mphead-personal-info">My Products</h1>
+      <div className='listing-admin'>
+        {products.length > 0 ? (
+          <section id="productList">
+            {products.map((product) => (
+              <div className="product-box" key={product._id} onClick={() => handleProductClick(product._id)}>
+                <img className="product-image" src={product.images[0]?.url} alt={product.name} />
+                <h3 className="product-name">{product.brand}</h3>
+                <p className="product-title">{product.title}</p>
+                <p className="product-price">Rs.{product.price}/day</p>
               </div>
-            )}
+            ))}
+          </section>
+        ) : (
+          <p>No products available.</p> // Add your custom message or component here
+        )}
+      </div>
+    </div>
+  </div>
+)}
+
+
 
             {activeTab === "rentals" && (
               <div>

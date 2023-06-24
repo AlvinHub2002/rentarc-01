@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Confirmation.css';
 
+
+
+
 function Confirmation() {
   const [product, setProduct] = useState(null);
   const [name, setName] = useState('');
@@ -54,6 +57,40 @@ function Confirmation() {
     return 0;
   };
 
+
+  const initiatePayment = async () => {
+    const productId = localStorage.getItem('productId');
+    console.log(productId)
+    const headers = {
+      'LoggedIn': localStorage.getItem('LoggedIn') 
+    };
+    const response = await axios.post(`http://localhost:3000/Confirmation/${productId}`, {
+      amount: calculateTotalPrice() * 100},{headers});
+
+    const options = {
+      key: 'rzp_test_oiCrE3lrqCUw7w',
+      amount: response.data.amount,
+      currency: response.data.currency,
+      name: 'RentArc',
+      description: 'Payment for Product Rental',
+      order_id: response.data.id,
+      handler: function (response) {
+        // Handle the payment success
+        console.log('Payment Successful:', response);
+        // Add your logic here to mark the order as paid or perform any other necessary actions
+      },
+      prefill: {
+        name: 'Alvin',
+        email: 'alvin@gmail.com',
+        contact: '9744901994',
+      },
+    };
+    const razorpayInstance = new window.Razorpay(options);
+    razorpayInstance.open();
+  };
+
+
+
   return (
     <div>
       <div className="confirm">
@@ -93,7 +130,7 @@ function Confirmation() {
                 </div>
                 <p className="total-price-confirm" >{`Total Price: Rs.${calculateTotalPrice()}`}</p>
                 <div className="confirmation-butt">
-                  <button>Confirm & Pay</button>
+                  <button onClick={initiatePayment}>Confirm & Pay</button>
                 </div>
               </div>
             </div>

@@ -4,8 +4,11 @@ const cors =require("cors")
 const mongoose = require('mongoose');
 const products = require("./productModel");
 const unverified =require('./unverifiedModel');
+const rented =require('./RentedProductsModel')
 const cloudinary = require('./cloudinary');
 const { Collection } = require('mongoose');
+const Razorpay = require('razorpay');
+
 const app =express()
 app.use(express.json({limit: '100mb'}));
 app.use(express.urlencoded({ limit :'100mb',extended: true }));
@@ -342,3 +345,53 @@ app.post('/Navbar', (req, res) => {
     }
   });
   
+
+
+  const razorpay = new Razorpay({
+    key_id: 'rzp_test_oiCrE3lrqCUw7w',
+    key_secret: 'lS6rvhZwhtBqGZZn01zE5hSr',
+  });
+
+
+  app.post(`/Confirmation/:id`, async (req, res) => {
+    try {
+      const { amount } = req.body;
+      const loggedin=req.header('LoggedIn')
+      console.log(loggedin)
+      const options = {
+        amount,
+        currency: 'INR',
+        receipt: 'order_receipt',
+      };
+      const rs=amount/100;
+      const order = await razorpay.orders.create(options);
+      const { id } = req.params;
+      const product = await products.findOne({ _id: id });
+      const renter=await collection.findOne({ email:product.Renter});
+      const productDetails = new rented ({
+        productId:id,
+        category: product.category,
+        brand: product.brand,
+        title: product.title,
+        district: product.district,
+        place:product.place,
+        contact: product.contact,
+        Renter:renter.email,
+        RentedBy:loggedin,
+        paymentDate:order.created_at,
+        paymentId:order.id,
+        Amount:rs,
+      });
+
+      const rentedProduct = await productDetails.save();
+  
+      res.json({
+        id: order.id,
+        amount: order.amount,
+        currency: order.currency,
+      });
+    } catch (error) {
+      console.error('Error creating order:', error);
+      res.status(500).json({ error: 'Failed to create payment order' });
+    }
+  });
