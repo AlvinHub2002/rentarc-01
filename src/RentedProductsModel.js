@@ -10,6 +10,10 @@ const newSchema=new mongoose.Schema({
     contact: String,
     Renter:String,
     RentedBy:String,
+    RentedPeriod:{
+        fromDate:Date,
+        toDate:Date,
+    },
     paymentDate:Date,
     paymentId:String,
     Amount:Number,

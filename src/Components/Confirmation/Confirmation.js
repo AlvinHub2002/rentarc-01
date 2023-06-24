@@ -62,8 +62,12 @@ function Confirmation() {
     const productId = localStorage.getItem('productId');
     console.log(productId)
     const headers = {
-      'LoggedIn': localStorage.getItem('LoggedIn') 
-    };
+      'LoggedIn': localStorage.getItem('LoggedIn'),
+      'RentedPeriod': JSON.stringify({
+        fromDate: rentedPeriod.fromDate, 
+        toDate: rentedPeriod.toDate, 
+      })
+        };
     const response = await axios.post(`http://localhost:3000/Confirmation/${productId}`, {
       amount: calculateTotalPrice() * 100},{headers});
 

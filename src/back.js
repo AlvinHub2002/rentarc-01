@@ -357,7 +357,7 @@ app.post('/Navbar', (req, res) => {
     try {
       const { amount } = req.body;
       const loggedin=req.header('LoggedIn')
-      console.log(loggedin)
+      const rentedPeriod = JSON.parse(req.header('RentedPeriod'));
       const options = {
         amount,
         currency: 'INR',
@@ -378,6 +378,10 @@ app.post('/Navbar', (req, res) => {
         contact: product.contact,
         Renter:renter.email,
         RentedBy:loggedin,
+        RentedPeriod:{
+          fromDate:rentedPeriod.fromDate,
+          toDate:rentedPeriod.toDate,
+      },
         paymentDate:order.created_at,
         paymentId:order.id,
         Amount:rs,
