@@ -7,6 +7,7 @@ function Profile() {
   const [activeTab, setActiveTab] = useState("personel");
   const [userDetails, setUserDetails] = useState(null);
   const [products, setProducts] = useState([]);
+  const [Rentals,setRentals]=useState([]);
   const history= useNavigate()
   useEffect(() => {
     const loggedin = localStorage.getItem('LoggedIn');
@@ -20,6 +21,8 @@ function Profile() {
       const response = await axios.get(`http://localhost:3000/Profile?loggedin=${loggedin}`); 
       setUserDetails(response.data.profile);
       setProducts(response.data.ownedproduct );
+      setRentals(response.data.rentals);
+      console.log(Rentals);
     } catch (error) {
       console.error('Error fetching user details:', error);
     }
@@ -78,7 +81,7 @@ function Profile() {
             )}
 
 
-{activeTab === "products" && Array.isArray(products) && (
+        {activeTab === "products" && Array.isArray(products) && (
   <div>
     <div className='personal-info'>
       <h1 className="mphead-personal-info">My Products</h1>
@@ -104,10 +107,28 @@ function Profile() {
 
 
 
-            {activeTab === "rentals" && (
+            {activeTab === "rentals" && Array.isArray(Rentals) && (
               <div>
                 <div className='personal-info'>
                 <h1 className="mphead-personal-info">My Rentals</h1>
+                <div className='listing-admin'>
+                {Rentals.length > 0 ? (
+                <section id="productList">
+                {Rentals.map((rent) => (
+                <div className="product-box" key={rent._id} >
+                  {rent.images && (
+                  <img className="product-image" src={rent.images[0]?.url} alt={rent.name} />
+                )}
+                <h3 className="product-name">{rent.brand}</h3>
+                <p className="product-title">{rent.title}</p>
+                <p className="product-price">Rs.{rent.price}/day</p>
+              </div>
+            ))}
+          </section>
+        ) : (
+          <p>No products available.</p> // Add your custom message or component here
+        )}
+      </div>
                 </div>
               </div>
             )}

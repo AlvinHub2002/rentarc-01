@@ -235,14 +235,15 @@ app.post('/Navbar', (req, res) => {
     try {
       const profile = await collection.findOne({ email:loggedin });
       const ownedproduct = await products.find({Renter: loggedin});
-      console.log(ownedproduct)
+      const rentals= await rented.find({RentedBy: loggedin});
+      console.log(rentals)
       if(!ownedproduct){
         return res.status(404).json({ error: 'Product not found' })
       }
       if (!profile) {
         return res.status(404).json({ error: 'Profile not found' });
       }
-      const response={profile,ownedproduct}
+      const response={profile,ownedproduct,rentals}
       res.json(response);
     } catch (error) {
       console.error(error);
@@ -377,6 +378,7 @@ app.post('/Navbar', (req, res) => {
         place:product.place,
         contact: product.contact,
         Renter:renter.email,
+        images:product.images,
         RentedBy:loggedin,
         RentedPeriod:{
           fromDate:rentedPeriod.fromDate,

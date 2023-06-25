@@ -10,6 +10,12 @@ const newSchema=new mongoose.Schema({
     contact: String,
     Renter:String,
     RentedBy:String,
+    images: [
+        {
+          public_id: { type: String },
+          url: { type: String },
+        },
+      ],
     RentedPeriod:{
         fromDate:Date,
         toDate:Date,
