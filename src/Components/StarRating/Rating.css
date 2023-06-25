@@ -1,0 +1,95 @@
+.rating-page-main{
+    justify-content: center;
+    padding: 5rem;
+}
+
+.rating-contents{
+    display: flex;
+    border: 1px solid black;
+    padding: 3rem;
+    padding-right:10rem;
+    padding-left: 10rem;
+    border-radius: 20px;
+}
+.rating-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 5rem;
+    background-color: rgb(205, 205, 205);
+    border-radius: 20px;
+
+  }
+  
+  .rating-product-image {
+    width: 400px;
+    height: 400px;
+    margin-right: 20px;
+    /* border: 2px solid black; */
+    padding-right: 20px;
+    /* padding-top: 3rem; */
+  }
+  .rating-product-image-given{
+    height: 400px;
+    width: 400px;
+    object-fit: contain;
+  }
+  
+  .rating-section {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15rem;
+    gap: 2rem;
+  }
+  
+  .rating-section h2 {
+    margin-bottom:30px;
+    font-size: 28px;
+    text-align: center  ;
+  }
+  
+  .rating-values {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+  }
+  .comment{
+    text-align: center ;
+    font-weight:600;
+    font-size: 24px;
+    color: rgb(53, 53, 53);
+  }
+  
+  .rating-values button {
+    background-color: transparent;
+    border: 1px solid black;
+    font-size: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+    padding: 5px;
+    width: 40px;
+    border-radius: 20px;
+
+  }
+  
+  .rating-values button.active {
+    background-color:rgb(230, 197, 11);
+    color: whitesmoke;
+
+  }
+  
+.rating-submit{
+    text-align: center;
+    padding-top: 3rem;
+}
+.rating-submit-button{
+    border-radius: 20px;
+    width: 200px;
+    height: 40px;
+    background-color: rgba(93, 93, 133, 0.99);
+    color: white;
+
+}
+  

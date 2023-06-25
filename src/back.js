@@ -225,7 +225,7 @@ app.post('/Navbar', (req, res) => {
       res.json(response);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Server error' });
+      res.status(500).json({ error: 'Server error' });5
     }
   });
   
@@ -399,5 +399,27 @@ app.post('/Navbar', (req, res) => {
     } catch (error) {
       console.error('Error creating order:', error);
       res.status(500).json({ error: 'Failed to create payment order' });
+    }
+  });
+
+
+
+
+
+  app.get(`/Rating/:id`, async (req, res) => {
+    const { id } = req.params;
+    try {
+      const product = await products.findOne({ _id: id });
+      console.log(product)
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      // const renter=await collection.findOne({ email:product.Renter});
+  
+      //console.log(response)
+      res.json(product);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
     }
   });
