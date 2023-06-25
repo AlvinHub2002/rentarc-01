@@ -225,7 +225,7 @@ app.post('/Navbar', (req, res) => {
       res.json(response);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Server error' });
+      res.status(500).json({ error: 'Server error' });5
     }
   });
   
