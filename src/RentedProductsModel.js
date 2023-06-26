@@ -7,6 +7,7 @@ const newSchema=new mongoose.Schema({
     title: String,
     district: String,
     place:String,
+    price:Number,
     contact: String,
     Renter:String,
     RentedBy:String,

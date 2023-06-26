@@ -32,8 +32,11 @@ function Unverified() {
 
       const verifyProduct= async () => {
         try {
+          const headers = {
+            'productId': localStorage.getItem('productId'),
+              };
           await axios.post('http://localhost:3000/Unverified',product, {
-            
+            headers
           })
 
           .then(res=>{

@@ -105,6 +105,7 @@ function ProductList() {
               <img className="product-image" src={product.images[0]?.url} alt={product.name} />
               <h3 className="product-name">{product.brand}</h3>
               <p className="product-title">{product.title}</p>
+              <p className='product-title'>Rating : {product.averageRating}/5</p>
               <p className="product-price">Rs.{product.price}/day</p>
             </div>
           ))}

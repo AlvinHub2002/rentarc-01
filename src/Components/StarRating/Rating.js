@@ -55,7 +55,16 @@ const Rating = () => {
     setRatingComment(comment);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    try {
+      const productId = localStorage.getItem('productId');
+      const response = await axios.post(`http://localhost:3000/Rating/${productId}`, {
+        rating,
+      });
+      console.log('Rating:', response.data);
+    } catch (error) {
+      console.error('Error submitting rating:', error);
+    }
     console.log('Rating:', rating);
   };
 

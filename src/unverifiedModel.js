@@ -17,6 +17,7 @@ const newSchema=new mongoose.Schema({
       ],
       Renter:String,
       postDate:Date,
+      averageRating:Number,
     })
 
 const unverified =mongoose.model("unverified",newSchema)
