@@ -53,11 +53,11 @@ function Profile() {
               <h5 className="side-profile" onClick={() => handleTabClick("rentals")}>My Rentals</h5>
               <br /><br /><hr />
 
-              <h5 className="side-profile" onClick={() => handleTabClick("cart")}>Cart</h5>
+              {/* <h5 className="side-profile" onClick={() => handleTabClick("cart")}>Cart</h5>
               <br /><br /><hr />
 
               <h5 className="side-profile" onClick={() => handleTabClick("payment")}>Payment</h5>
-              <br /><br />
+              <br /><br /> */}
             </div>
             )} 
           </div>
@@ -133,7 +133,7 @@ function Profile() {
               </div>
             )}
 
-            {activeTab === "cart" && (
+            {/* {activeTab === "cart" && (
               <div>
                 <div className='personal-info'>
                 <h1 className="mphead-personal-info">Cart items</h1>
@@ -152,7 +152,7 @@ function Profile() {
               </div>
                   </div>
               </div>
-            )}
+            )} */}
 
           </div>
         </div>
