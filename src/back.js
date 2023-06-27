@@ -198,8 +198,11 @@ app.post('/Navbar', (req, res) => {
     try {
       const productData = await products.find({});
       const unverifiedProduct = await unverified.find({});
+      const admin = await collection.findOne({email: 'admina@gmail.com'});
+      const user = await collection.find({});
+      // console.log(user)
       const response = {
-        productData,unverifiedProduct
+        productData,unverifiedProduct,admin,user
       }
       res.json(response);
     } catch (error) {

@@ -79,6 +79,66 @@
   .verified-product{
     margin-bottom: 2rem;
   }
+  .admin-dash{
+    height: auto;
+    width: 800px;
+    background-color: #818181;
+    margin-top: 5rem;
+    max-width: 80%;
+    /* background-color: rgb(217, 217, 217); */
+    border-radius: 20px;
+    padding: 30px;
+    margin-left: 50px;
+  }
+  .admin-dash-label{
+    height: 10px;
+    width: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 30px;
+
+  }
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .user-table th,
+  .user-table td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .user-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .user-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .user-table tbody tr:hover {
+    background-color: #e5e5e5;
+  }
+  .action-button {
+    padding: 8px 16px;
+    background-color:#c62828;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .action-button:hover {
+    background-color: #818181;
+  }
+  
+  .action-button:focus {
+    outline: none;
+  }
+  
   
 
   

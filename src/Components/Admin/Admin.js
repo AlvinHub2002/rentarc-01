@@ -10,6 +10,8 @@ const AdminPortal = () => {
   const [selectedContent, setSelectedContent] = useState('');
   const [products, setProducts] = useState([]);
   const [unverified, setUnverified] = useState([]);
+  const [admin, setAdmin] = useState([]);
+  const [user,setUser]=useState([]);
   const history =useNavigate();
 
 
@@ -21,8 +23,11 @@ useEffect(() => {
 const fetchData = async () => {
   try {
     const response = await axios.get('http://localhost:3000/AdminPortal');
+    // setUserDetails(response.data.profile);
     setProducts(response.data.productData);
     setUnverified(response.data.unverifiedProduct)
+    setAdmin(response.data.admin)
+    setUser(response.data.user)
   } catch (error) {
     console.error(error);
   }
@@ -82,9 +87,50 @@ const UnverifiedProducts = () => {
   
 };
 
-const Dashboard=()=>{
-
+const Dashboard=()=> {
+  return(
+    
+    <div>
+      
+      <div className='admin-dash'>
+      <p>Name: {`${admin?.Firstname} ${admin?.Lastname}`}</p>
+        <p>Email: {admin.email}</p>
+        
+      </div>
+ 
+    </div>
+  );
 }
+
+const Users = () => {
+  return (
+    <div className="users-content">
+      <h2>Users</h2>
+      <table className="user-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {user.map((user) => (
+            <tr key={user.id}>
+              <td>{user.Firstname}</td>
+              <td>{user.email}</td>
+              <td>{user.role}</td>
+              <td>
+                <button className="action-button" >Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 
 
@@ -94,14 +140,17 @@ const Dashboard=()=>{
 
   let content;
    if (selectedContent === 'dashboard') {
-    content = <Dashboard />;
+    // content = <Dashboard />;
    }
   else if (selectedContent === 'verified-products') {
     content = <VerifiedProducts />;
   } else if (selectedContent === 'unverified-products') {
     content = <UnverifiedProducts />;
-  } else {
-    content = <h2>Dashboard</h2>;
+  } else if (selectedContent === 'users') {
+    content = <Users/>
+  }
+  else {
+    content = <Dashboard />;
   }
 
   return (
@@ -136,7 +185,14 @@ const Dashboard=()=>{
                 <span className="button-text-admin-portal">Unverified Products</span>
               </button>
             </li>
-            
+            <li>
+              <button
+                onClick={() => handleContentChange('users')}
+                 className={selectedContent === 'users' ? 'active' : ''}
+                >
+                  <span className="button-text-admin-portal">Users</span>
+              </button>
+            </li>
           </ul>
         </nav>
       </div>
@@ -146,7 +202,9 @@ const Dashboard=()=>{
             <h1 className="header-title-admin-portal">Admin Portal</h1>
           </div>
         </header>
-        <div className="contentadmin-portal">{content}</div>
+        <div className="contentadmin-portal">{content}
+        {selectedContent === 'dashboard' && <Dashboard userDetails={admin} />}
+        </div>
       </div>
     </div>
   );
