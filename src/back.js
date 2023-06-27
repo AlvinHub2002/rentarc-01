@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const products = require("./productModel");
 const unverified =require('./unverifiedModel');
 const rented =require('./RentedProductsModel')
+const rating=require('./RatingModel')
 const cloudinary = require('./cloudinary');
 const { Collection } = require('mongoose');
 const Razorpay = require('razorpay');
@@ -117,8 +118,7 @@ app.post('/Navbar', (req, res) => {
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-
-
+   
 
     console.log(uploadedImages)
       const unverifiedproduct = new unverified({
@@ -133,6 +133,7 @@ app.post('/Navbar', (req, res) => {
         images:uploadedImages,
         Renter:user.email,
         postDate,
+        averageRating:"0",
       });
   
       const add = await unverifiedproduct.save();
@@ -156,7 +157,7 @@ app.post('/Navbar', (req, res) => {
       console.error(error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  });
+  })
 
 
   app.get('/Categorypage', async (req, res) => {
@@ -239,7 +240,6 @@ app.post('/Navbar', (req, res) => {
       const profile = await collection.findOne({ email:loggedin });
       const ownedproduct = await products.find({Renter: loggedin});
       const rentals= await rented.find({RentedBy: loggedin});
-      console.log(rentals)
       if(!ownedproduct){
         return res.status(404).json({ error: 'Product not found' })
       }
@@ -279,9 +279,25 @@ app.post('/Navbar', (req, res) => {
 
 
   app.post('/Unverified', async (req, res) => {
-    const { category, brand, title, description, price, district,place, contact, images,Renter,postDate } = req.body;
+    const { category, brand, title, description, price, district,place, contact, images,Renter,postDate,averageRating } = req.body;
+    const id=req.header('productId')
     try{
-      console.log(req.body.Renter)
+
+      const unverifiedProduct = await unverified.findOne({
+        category,
+        brand,
+        title,
+        description,
+        price,
+        district,
+        place,
+        contact,
+        images,
+        Renter,
+        postDate,
+        averageRating,
+      });
+     
 
       const unverifiedproduct = new products({
         category,
@@ -295,11 +311,11 @@ app.post('/Navbar', (req, res) => {
         images,
         Renter,
         postDate,
+        averageRating,
       });
   
       const add = await unverifiedproduct.save();
-      console.log(unverifiedproduct._id)
-      // await unverified.deleteOne({_id:'648df552a1ee48ddbe33b2cb'});
+      await unverified.findByIdAndDelete(unverifiedProduct._id);
 
   
       if (add) {
@@ -379,6 +395,7 @@ app.post('/Navbar', (req, res) => {
         title: product.title,
         district: product.district,
         place:product.place,
+        price:product.price,
         contact: product.contact,
         Renter:renter.email,
         images:product.images,
@@ -413,7 +430,7 @@ app.post('/Navbar', (req, res) => {
     const { id } = req.params;
     try {
       const product = await products.findOne({ _id: id });
-      console.log(product)
+      // console.log(product)
       if (!product) {
         return res.status(404).json({ error: 'Product not found' });
       }
@@ -424,5 +441,33 @@ app.post('/Navbar', (req, res) => {
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Server error' });
+    }
+  });
+
+
+
+
+  app.post(`/Rating/:id`, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { rating: currentRating } = req.body;
+  
+      const newRating = new rating({ 
+        productId: id,
+        Rating: currentRating,
+      });
+      await newRating.save();
+  
+      const productRatings = await rating.find({ productId: id });
+      const ratingSum = productRatings.reduce((sum, rating) => sum + rating.Rating, 0);
+      const averageRating = (ratingSum / productRatings.length).toFixed(1);
+      
+  
+      await products.findByIdAndUpdate(id, { averageRating });
+  
+      res.json(newRating);
+    } catch (error) {
+      console.error('Error saving rating:', error);
+      res.status(500).json({ error: 'Failed to save rating' });
     }
   });
