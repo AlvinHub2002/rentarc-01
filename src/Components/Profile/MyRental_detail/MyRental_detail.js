@@ -45,6 +45,8 @@ function MyRental_detail() {
 
       const deleteProduct = async () => {
         const productId = localStorage.getItem('productId');
+        const loggedin=localStorage.getItem('LoggedIn')
+        console.log(loggedin)
         try {
             const result = await Swal.fire({
                 title: 'Are you sure?',
@@ -57,7 +59,9 @@ function MyRental_detail() {
                 cancelButtonText: 'Cancel',
               });
           if (result.isConfirmed) {
-            await axios.delete(`http://localhost:3000/MyRental_detail/${productId}`)
+            await axios.delete(`http://localhost:3000/MyRental_detail/${productId}`,{
+              data:{loggedin:loggedin},
+            })
               .then(res => {
                 if (res.data === 'Product deleted successfully') {
                 Swal.fire('Cancelled!', 'Product has been cancelled.', 'success');

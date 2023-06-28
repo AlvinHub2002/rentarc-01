@@ -1,6 +1,7 @@
 const express = require('express');
 const collection =require("./mongo")
 const cors =require("cors")
+const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 const products = require("./productModel");
 const unverified =require('./unverifiedModel');
@@ -98,45 +99,45 @@ app.post("/Signup",async(req,res)=>{
 
   try{
     const data={
-      Firstname:Firstname,
-      Lastname:Lastname,
-      email:email,
-      password:password
-  }
-      const check=await collection.findOne({email:email})
-      if (check){
-          res.json("exist")
-      }
-      else if (data.Firstname!=='' && data.Lastname!==''&&data.email!==''&& data.password!==''){
-          res.json("perfect")
-          await collection.insertMany([data])
+        Firstname:Firstname,
+        Lastname:Lastname,
+        email:email,
+        password:password
+    }
 
-          const transporter = nodemailer.createTransport({
-            service: 'Gmail',
-            auth: {
-              user: 'myrentarc@gmail.com',
-              pass: 'wqjbrpzjophakbiw',
-            },
-          });
-        
-          const mailOptions = {
-            from: 'myrentarc@gmail.com',
-            to: data.email,
-            subject: 'Welcome to RentArc',
-            text: `Your RentArc account has been created\n\nUsername:${data.email}\nName:${data.Firstname} ${data.Lastname}\nPassword:${data.password}(do not share)`,
-            
-          };
-        
-          try {
-            await transporter.sendMail(mailOptions);
-            console.log('Email notification sent successfully');
-          } catch (error) {
-            console.error('Error sending email notification:', error);
-          }
-
-      }
-      else if (data.Firstname==='' && data.Lastname===''&&data.email===''&& data.password===''){
-          res.json("incomplete")
+    try{
+        const check=await collection.findOne({email:email})
+        if (check){
+            res.json("exist")
+        }
+        else if (data.Firstname!=='' && data.Lastname!==''&&data.email!==''&& data.password!==''){
+            res.json("perfect")
+            await collection.insertMany([data])
+            const transporter = nodemailer.createTransport({
+              service: 'Gmail',
+              auth: {
+                user: 'myrentarc@gmail.com',
+                pass: 'wqjbrpzjophakbiw',
+              },
+            });
+          
+            const mailOptions = {
+              from: 'myrentarc@gmail.com',
+              to: data.email,
+              subject: 'Welcome to RentArc',
+              text: `Your RentArc account has been created\n\nUsername:${data.email}\nName:${data.Firstname} ${data.Lastname}\nPassword:${data.password}(do not share)`,
+              
+            };
+          
+            try {
+              await transporter.sendMail(mailOptions);
+              console.log('Email notification sent successfully');
+            } catch (error) {
+              console.error('Error sending email notification:', error);
+            }
+        }
+        else if (data.Firstname==='' && data.Lastname===''&&data.email===''&& data.password===''){
+            res.json("incomplete")
 
   }
   }
@@ -371,6 +372,7 @@ app.post('/Navbar', (req, res) => {
 
   app.post('/Unverified', async (req, res) => {
     const { category, brand, title, description, price, district,place, contact, images,Renter,postDate,averageRating } = req.body;
+    console.log(category)
     const id=req.header('productId')
     try{
 
@@ -406,6 +408,28 @@ app.post('/Navbar', (req, res) => {
       });
   
       const add = await unverifiedproduct.save();
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: 'myrentarc@gmail.com',
+          pass: 'wqjbrpzjophakbiw',
+        },
+      });
+      
+        const mailOptions = {
+          from: 'myrentarc@gmail.com',
+          to: unverified.Renter,
+          subject: 'product Verified',
+         text: `Your product has been verified  by the admin.\n\nProduct Details:\nCategory: ${category}\nBrand: ${brand}\nTitle: ${title}\nDescription: ${description}\nPrice: ${price}\nDistrict: ${district}\nPlace: ${place}\nContact: ${contact}\nRenter: ${Renter}\nPost Date: ${postDate}\nAverage Rating: ${averageRating}\n This product is now available for renting `,
+         
+        };
+      
+        try {
+          await transporter.sendMail(mailOptions);
+          console.log('Email notification sent successfully');
+        } catch (error) {
+          console.error('Error sending email notification:', error);
+        }
       await unverified.findByIdAndDelete(unverifiedProduct._id);
 
   
@@ -420,7 +444,65 @@ app.post('/Navbar', (req, res) => {
     }
   });
 
+  
 
+  app.delete('/Unverified', async (req, res) => {
+    const { category, brand, title, description, price, district, place, contact, images, Renter, postDate, averageRating } = req.body;
+    const id = req.header('productId');
+  
+    const transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: 'myrentarc@gmail.com',
+        pass: 'wqjbrpzjophakbiw',
+      },
+    });
+  
+    const mailOptions = {
+      from: 'myrentarc@gmail.com',
+      to: Renter,
+      subject: 'Product Declined',
+      text: `Your product has been declined by the admin.\n\nProduct Details:\nCategory: ${category}\nBrand: ${brand}\nTitle: ${title}\nDescription: ${description}\nPrice: ${price}\nDistrict: ${district}\nPlace: ${place}\nContact: ${contact}\nRenter: ${Renter}\nPost Date: ${postDate}\nAverage Rating: ${averageRating}`,
+      
+    };
+  
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log('Email notification sent successfully');
+    } catch (error) {
+      console.error('Error sending email notification:', error);
+    }
+    console.log(category);
+  
+    try {
+      const unverifiedProduct = await unverified.findOne({
+        category,
+        brand,
+        title,
+        description,
+        price,
+        district,
+        place,
+        contact,
+        images,
+        Renter,
+        postDate,
+        averageRating,
+      });
+  
+      if (!unverifiedProduct) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+  
+      await unverified.findByIdAndDelete(unverifiedProduct._id);
+  
+      res.json('Product deleted successfully from the unverified collection');
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      res.status(500).json({ error: 'Failed to delete product' });
+    }
+  });
+  
 
   app.get(`/MyProduct_detail/:id`, async (req, res) => {
     const { id } = req.params;
@@ -448,7 +530,29 @@ app.post('/Navbar', (req, res) => {
     const {id} = req.params;
     console.log(id)
     try {
-      await products.findOneAndDelete({ _id: id });
+      const product=await products.findOneAndDelete({ _id: id });
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: 'myrentarc@gmail.com',
+          pass: 'wqjbrpzjophakbiw',
+        },
+      });
+    
+      const mailOptions = {
+        from: 'myrentarc@gmail.com',
+        to: 'alvinvargheseavm@gmail.com',
+        subject: 'Product Removed',
+        text: `Your product has been Removed .\n\nProduct Details:\nCategory: ${product.category}\nBrand: ${product.brand}\nTitle: ${product.title}\nDescription: ${product.description}\nPrice: ${product.price}\nDistrict: ${product.district}\nPlace: ${product.place}\nContact: $product.{contact}`,
+        
+      };
+    
+      try {
+        await transporter.sendMail(mailOptions);
+        console.log('Email notification sent successfully');
+      } catch (error) {
+        console.error('Error sending email notification:', error);
+      }
       res.status(200).json('Product deleted successfully' );
     } catch (error) {
       console.error('Error deleting product:', error);
@@ -479,6 +583,32 @@ app.post('/Navbar', (req, res) => {
       const { id } = req.params;
       const product = await products.findOne({ _id: id });
       const renter=await collection.findOne({ email:product.Renter});
+
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: 'myrentarc@gmail.com',
+          pass: 'wqjbrpzjophakbiw',
+        },
+      });
+    
+      const mailOptions = {
+        from: 'myrentarc@gmail.com',
+        to: loggedin,
+        subject: 'Payment Successful',
+        text: `Yout payment for the product : ${product.brand} with product ID : ${id} is successful.\n\nTotal amount : ${rs}\nOrder ID : ${order.id}\nOrder Date : ${order.created_at}\nRented period : ${rentedPeriod.fromDate} to ${rentedPeriod.toDate}\n\nPlease collect your Product from the renter : ${renter.email} on : ${rentedPeriod.fromDate}`,
+        
+      };
+    
+      try {
+        await transporter.sendMail(mailOptions);
+        console.log('Email notification sent successfully');
+      } catch (error) {
+        console.error('Error sending email notification:', error);
+      }
+
+
+
       const productDetails = new rented ({
         productId:id,
         category: product.category,
@@ -606,9 +736,36 @@ app.post('/Navbar', (req, res) => {
 
   app.delete(`/MyRental_detail/:id`, async (req, res) => {
     const {id} = req.params;
+    const {loggedin}=req.body;
+    
     console.log(id)
     try {
-      await rented.findOneAndDelete({ productId: id });
+      const rent=await rented.findOneAndDelete({ productId: id });
+      
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: 'myrentarc@gmail.com',
+          pass: 'wqjbrpzjophakbiw',
+        },
+      });
+    
+      const mailOptions = {
+        from: 'myrentarc@gmail.com',
+        to: loggedin,
+        subject: 'Order cancelled',
+        text: `Your Order has been cancelled : ${rent.brand} with product ID : ${id} is successful.\n\nTotal amount : ${rent.Amount}\nOrder ID : ${rent.paymentId}\nOrder Date : ${rent.paymentDate}\n\n Refund will be processed within 7 working days`,
+        
+      };
+    
+      try {
+        await transporter.sendMail(mailOptions);
+        console.log('Email notification sent successfully');
+      } catch (error) {
+        console.error('Error sending email notification:', error);
+      }
+
+
       res.status(200).json('Product deleted successfully' );
     } catch (error) {
       console.error('Error deleting product:', error);
@@ -616,16 +773,39 @@ app.post('/Navbar', (req, res) => {
     }
   });
 
+ 
 
+  const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'myrentarc@gmail.com',
+      pass: 'wqjbrpzjophakbiw',
+    },
+  });
+  
+  const sendEmailNotification = async (email) => {
+    const mailOptions = {
+      from: 'myrentarc@gmail.com',
+      to: email,
+      subject: 'Account Deletion',
+      text: `Your RentArc account has been deleted\nusername:${email} `,
+    };
+  
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log('Email notification sent successfully');
+    } catch (error) {
+      console.error('Error sending email notification:', error);
+    }
+  };
+  
   app.delete('/AdminPortal', async (req, res) => {
     try {
-      const { currentmail} = req.body;
-      // console.log(currentmail)
-
+      const { currentmail } = req.body;
+  
       await collection.findOneAndDelete({ email: currentmail });
-  
-  
-      // Perform additional operations using the email parameter, such as sending an email notification
+      const userEmailAddress = currentmail; // Replace with the user's email address
+      await sendEmailNotification(userEmailAddress);
   
       res.json({ message: 'User deleted successfully' });
     } catch (error) {
