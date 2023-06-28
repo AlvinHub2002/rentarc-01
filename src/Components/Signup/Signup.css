@@ -159,3 +159,28 @@ to{
     font-size: 14px;
     padding-top: 0;
 }
+     
+.signup-divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .signup-divider-line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #ccc;
+  }
+  
+  .signup-divider-text {
+    margin: 0 10px;
+    color: #999;
+    font-weight: bold;
+  }
+
+#signindiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
