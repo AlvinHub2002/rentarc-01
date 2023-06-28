@@ -65,6 +65,41 @@ function Unverified() {
         }
       };
 
+      const unverifyProduct= async () => {
+        try {
+          const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: 'You are about to unverify this product',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'unverify',
+            cancelButtonText: 'Cancel',
+          });
+          if(result.isConfirmed){
+          const headers = {
+            'productId': localStorage.getItem('productId'),
+              };
+          await axios.delete('http://localhost:3000/Unverified', {
+            headers,
+            data:product,
+          })
+
+          .then(res=>{
+            if(res.data==='Product deleted successfully from the unverified collection'){
+              Swal.fire('UnVerified!', 'Product has been declained.', 'success');
+            }
+            else{
+              Swal.fire('Error!', 'Failed to unverify the product.', 'error');
+            }
+          })
+            }
+           } catch (error) {
+          console.error(error);
+        }
+      };
+
 
 
 
@@ -130,7 +165,9 @@ function Unverified() {
         </div>
 
         <div className='rent-button-main'>
-        <button className="rent-button" onClick={verifyProduct}>Verify Product</button>
+        <button className="rent-button" onClick={verifyProduct}>Verify Product</button><br/>
+        <button className="rent-button" onClick={unverifyProduct}>UnVerify Product</button>
+
         </div>
         </div>
     </div>
