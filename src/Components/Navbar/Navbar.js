@@ -116,8 +116,8 @@ function Navbar() {
 				</a>
         <p className='lname'>RentArc</p>
         <div className='content'>
-          <a href='amazom.com'>Home</a>
-          <a href='amazom.com'>Contact us</a>
+        <Link to={'/Navbar'}>Home</Link>
+          <Link to={'/AboutUs'}>About Us</Link>
           </div>
           <div className='buttons'>
           <button class="button" aria-label="login" onClick={handleLogout}>Log out</button>

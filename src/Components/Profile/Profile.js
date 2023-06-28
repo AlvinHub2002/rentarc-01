@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "./Profile.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Header from '../../Components/Common/Header'
 
 function Profile() {
   const [activeTab, setActiveTab] = useState("personel");
@@ -43,6 +44,7 @@ function Profile() {
 
   return (
     <div>
+      <Header/>
       <div className="container-fluid-profile">
         <div>
           <div className="sidebar-profile">

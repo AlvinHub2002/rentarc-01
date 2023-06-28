@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Product_Listing/ProductList.css'
 import Swal from 'sweetalert2';
+import Headers from '../Common/Header'
 
 
 const AdminPortal = () => {
@@ -186,6 +187,7 @@ const Users = () => {
 
   return (
     <div className="admin-portal">
+      <Headers/>
       <div className="sidebar-admin-portal">
         <div className="logo-admin-portal">
           {/* Logo */}

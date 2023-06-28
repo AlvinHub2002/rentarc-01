@@ -27,10 +27,10 @@ function Header() {
         <p className='lname'>RentArc</p>
         <div className='content-header'>
           <Link to='/Navbar'>Home</Link>
-          <a href='amazom.com'>Contact us</a>
+          <Link to={'/AboutUs'}>About Us</Link>
           </div>
           <div className='buttons-header'>
-          <button class="button-header" aria-label="login" onClick={handleLogout}>Log out</button>
+          <button class="button-header-logout" aria-label="login" onClick={handleLogout}>Log out</button>
 				<Link to={'/Profile'}>
           <img className='profile-icon-header' src={profile} alt='amazon.com'></img>
         </Link>

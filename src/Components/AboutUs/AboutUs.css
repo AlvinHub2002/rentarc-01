@@ -1,0 +1,87 @@
+.about-us-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .team-members-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .team-member-card {
+    width: 250px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .team-member-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .member-info {
+    margin-bottom: 20px;
+  }
+  
+  .member-photo-container {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .member-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .member-name {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .member-role {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .member-connections {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .member-connections a {
+    display: inline-block;
+    margin: 0 10px;
+    color: #666;
+    font-size: 20px;
+    transition: color 0.3s ease;
+  }
+  
+  .member-connections a:hover {
+    color: #000;
+  }
+  
+  .animation-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .about-us-container h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }

@@ -3,6 +3,7 @@ import './Post.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Header from '../../Components/Common/Header'
 
 const districtsInKerala = [
   'Alappuzha',
@@ -121,6 +122,7 @@ const Post = () => {
 
   return (
     <div className='post'>
+      <Header/>
     <form onSubmit={handleSubmit} method='POST' encType="multipart/form-data">
     <h1 className='product-detail-heading'>Product Details</h1>
       <div className='product-details'>
@@ -266,7 +268,7 @@ const Post = () => {
         </div>
 
 
-      <div className='post-button'>
+      <div className='post-button-main'>
       <button type="submit">Post</button>
       </div>
     </form>

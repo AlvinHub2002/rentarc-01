@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Confirmation.css';
 import { useNavigate } from 'react-router-dom';
+import Header from '../../Components/Common/Header'
 
 function Confirmation() {
   const history=useNavigate()
@@ -96,6 +97,7 @@ function Confirmation() {
 
   return (
     <div>
+      <Header/>
       <div className="confirm">
         <div className="confirmation-page-main">
           <h1>Product Confirmation</h1>

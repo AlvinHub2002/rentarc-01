@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-// import Header from '../Common/Header';
+import Header from '../../Common/Header'
 // import { useParams } from 'react-router-dom';
 import './MyProduct_detail.css'
 function MyProduct_detail() {
@@ -85,7 +85,7 @@ function MyProduct_detail() {
 
   return (
     <div className='product-details-main'>
-      {/* <Header/> */}
+      <Header/>
         <div className="product-details-container">
       <div className="product-image-container">
         <div className='thumbnail-container'>

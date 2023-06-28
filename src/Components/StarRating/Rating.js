@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import './Rating.css'; // Import the CSS file for styling
 import axios from 'axios';
+import Header from '../../Components/Common/Header'
 import { useNavigate } from 'react-router-dom';
 
 const Rating = () => {
@@ -71,6 +72,8 @@ const Rating = () => {
   };
 
   return (
+    <div>
+      <Header/>
     <div className='rating-page-main'>
         <h2> Rate the product</h2>
         {product &&(
@@ -122,6 +125,7 @@ const Rating = () => {
       </div>
     </div>
     )}
+    </div>
     </div>
   );
 };

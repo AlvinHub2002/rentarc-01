@@ -1,6 +1,6 @@
 .sidebar-profile{
     background-color: rgb(230, 230, 230);
-    height: 388px;
+    height: auto;
     width: 416px;
     margin-left: 40px;
     margin-top: 25px;
@@ -12,8 +12,9 @@
     float: left;
     margin-left: 66px;
     cursor: pointer;
-
-    
+}
+.container-fluid-profile{
+    margin-top: 5rem;
 }
 
 .mainprt-profile{
