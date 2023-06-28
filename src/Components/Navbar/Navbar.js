@@ -2,10 +2,6 @@ import React from 'react'
 import Logo from './logo.png'
 import cat from'./category-image.png'
 import "./Navbar.css"
-import cd4 from './card4.png'
-import cd3 from './card3.png'
-import cd2 from './card2.png'
-import cd1 from './card1.png'
 import cart from './cart.png'
 import car1 from './rent6.png'
 import car2 from './rent5.png'
@@ -24,6 +20,8 @@ function Navbar() {
   const history=useNavigate();
 
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [topProducts, setTopProducts] = useState([]);
+
 
 
 
@@ -40,6 +38,29 @@ function Navbar() {
     return () => {
       window.removeEventListener('scroll', isScrolling);
     };
+  }, []);
+
+
+
+  useEffect(() => {
+    const fetchTopProducts = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/Navbar');
+        const products = response.data;
+  
+        const sortedProducts = products.sort((a, b) => b.averageRating - a.averageRating);
+  
+        // Get the top 4 products
+        const top4Products = sortedProducts.slice(0, 4);
+  
+        setTopProducts(top4Products);
+        console.log(topProducts)
+      } catch (error) {
+        console.error('Error fetching top products:', error);
+      }
+    };
+  
+    fetchTopProducts();
   }, []);
 
   const handleLogout = async () => {
@@ -70,6 +91,11 @@ function Navbar() {
     setSelectedCategory(category);
     localStorage.setItem('selectedCategory', category);
     history('/Categorypage');
+  };
+
+  const handleProductClick = (id) => {
+    localStorage.setItem('productId',id);
+    history('/Product_detail/:id')
   };
 
   // useEffect(() => {
@@ -172,68 +198,72 @@ function Navbar() {
   <div className='card-heading'>
     <h1 className='card-head'>Top products to rent</h1>
   </div>
-  <div className='cards'>
+  {topProducts.length>0 &&(
+    <div className='cards'>
+ 
   <div class="card1">
 
     <div class="imgBox">
-        <img src={cd1}
+        <img src={topProducts[0].images[0].url}
             alt="mouse corsair" class="gopro"></img>
     </div>
 
     <div class="contentBox">
-        <h3>VIRTUOSO RGB WIRELESS</h3>
-        <h2 class="price">61.<small>98</small> €</h2>
-        <a href="amazon.com" class="rent">Rent</a>
+        <h3>{topProducts[0].brand}</h3>
+        <h2 class="price">Rs.{topProducts[0].price}/day</h2>
+        <button class="rent"  key={topProducts[0]._id} onClick={()=>handleProductClick(topProducts[0]._id)} >Rent</button>
     </div>
 </div>
 
 <div class="card2">
 
 <div class="imgBox">
-    <img src={cd2}
+    <img src={topProducts[1].images[0].url}
         alt="mouse corsair" class="headset"></img>
 </div>
 
 <div class="contentBox">
-    <h3>VIRTUOSO RGB WIRELESS</h3>
-    <h2 class="price">61.<small>98</small> €</h2>
-    <a href="amazon.com" class="rent">Rent</a>
+    <h3>{topProducts[1].brand}</h3>
+    <h2 class="price">Rs.{topProducts[1].price}/day</h2>
+    <button class="rent"  key={topProducts[1]._id} onClick={()=>handleProductClick(topProducts[1]._id)}>Rent</button>
 </div>
 </div>
 
 <div class="card3">
 
 <div class="imgBox">
-    <img src={cd3}
+    <img src={topProducts[2].images[0].url}
         alt="mouse corsair" class="washer"></img>
 </div>
 
 <div class="contentBox">
-    <h3>VIRTUOSO RGB WIRELESS</h3>
-    <h2 class="price">61.<small>98</small> €</h2>
-    <a href="amazon.com" class="rent">Rent</a>
+    <h3>{topProducts[2].brand}</h3>
+    <h2 class="price">Rs.{topProducts[2].price}/day</h2>
+    <button class="rent"  key={topProducts[2]._id} onClick={()=>handleProductClick(topProducts[2]._id)}>Rent</button>
 </div>
 </div>
 
 <div class="card4">
 
 <div class="imgBox">
-    <img src={cd4}
+    <img src={topProducts[3].images[0].url}
         alt="mouse corsair" class="speaker"></img>
 </div>
 
 <div class="contentBox">
-    <h3>VIRTUOSO RGB WIRELESS</h3>
-    <h2 class="price">61.<small>98</small> €</h2>
-    <a href="amazon.com" class="rent">Rent</a>
+    <h3>{topProducts[3].brand}</h3>
+    <h2 class="price">Rs.{topProducts[3].price}/day</h2>
+    <button class="rent"  key={topProducts[3]._id} onClick={()=>handleProductClick(topProducts[3]._id)}>Rent</button>
 </div>
 </div>
+
 
 <div className='more'>
   <button className='more-button' onClick={handlemore}>More <i class='fas fa-angle-right'></i></button>
 </div>
 
 </div>
+)}
     </section>
     <section className='sect2'>
 

@@ -14,6 +14,7 @@ import Profile from './Components/Profile/Profile'
 import Unverified from './Components/Admin/AdminUnverifiedProduct/Unverified'
 import MyProduct_detail from './Components/Profile/MyProduct-detail/MyProduct_detail'
 import Rating from './Components/StarRating/Rating';
+import MyRental_detail from './Components/Profile/MyRental_detail/MyRental_detail';
 function App() {
   return (
   <div className='app'>
@@ -32,6 +33,7 @@ function App() {
       <Route path='/Unverified/:id' element={<Unverified/>} />
       <Route path='/MyProduct_detail/:id' element={<MyProduct_detail/>} />
       <Route path='/Rating/:id' element={<Rating/>} />
+      <Route path='/MyRental_detail/:id' element={<MyRental_detail/>} />
       </Routes>
   </div>
 )

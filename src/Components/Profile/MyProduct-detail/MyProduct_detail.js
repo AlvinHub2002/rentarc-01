@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 // import Header from '../Common/Header';
 // import { useParams } from 'react-router-dom';
@@ -45,15 +46,26 @@ function MyProduct_detail() {
       const deleteProduct = async () => {
         const productId = localStorage.getItem('productId');
         try {
+          const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: 'You are about to Remove  your product from the website',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ok',
+            cancelButtonText: 'Cancel',
+          });
+          if(result.isConfirmed){
           await axios.delete(`http://localhost:3000/MyProduct_detail/${productId}`)
 
          .then(res=>{
           if(res.data==='Product deleted successfully'){
-            alert("product removed successfully")
+            Swal.fire('Removed!', 'Product has been Removed.', 'success');
             history('/Profile')
                     }
           else if(res.data==='Failed to delete product'){
-            alert("product not removed")
+            Swal.fire('Error!', 'Failed to remove your product.', 'error');
 
           }
        })
@@ -63,6 +75,7 @@ function MyProduct_detail() {
           console.log(e);
        })
       }
+    }
         
 
         catch (error) {

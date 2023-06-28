@@ -2,7 +2,7 @@ import React, { useState,useEffect} from 'react';
 import './Post.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import Swal from 'sweetalert2';
 
 const districtsInKerala = [
   'Alappuzha',
@@ -84,6 +84,17 @@ const Post = () => {
 
 
   try{
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to submit your product',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ok',
+      cancelButtonText: 'Cancel',
+    });
+    if(result.isConfirmed){
   
     await axios.post('http://localhost:3000/Post', formData, {
      
@@ -91,16 +102,16 @@ const Post = () => {
 
     .then(res=>{
       if(res.data==='perfect'){
-          alert('Product added successfully')
-          history('/product-list')
+        Swal.fire('Submitted!', 'Product has been Submitted for verification.', 'success');
+        history('/product-list')
       }
       else{
-        alert('failed to add product')
+        Swal.fire('Error!', 'Failed to submit you product.', 'error');
       }
     })
 
   }
-  
+}
   catch (error) {
     console.error(error);
     // Handle the error

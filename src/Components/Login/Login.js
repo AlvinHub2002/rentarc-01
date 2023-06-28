@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from './logo.png'
+import Swal from 'sweetalert2';
 import validation from './Validation'
 import { Link, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
@@ -28,19 +29,21 @@ function Login() {
              })
              .then(res=>{
                 if(res.data==='success-user'){
+                    Swal.fire('RentArc!', 'Welcome to RentArc.', 'success');
                     localStorage.setItem('LoggedIn', email);
                     navigate('/Navbar')
                 }
                 else if(res.data==='success-admin'){
+                    Swal.fire('RentArc!', 'Welcome to RentArc.', 'success');
                     localStorage.setItem('LoggedIn', email);
                     navigate('/AdminPortal')
                 }
 
                 else if(res.data==='wrongpass'){
-                    alert("wrong credentials")
+                    Swal.fire('Error!', 'Wrong credentials.', 'error');
                 }
                 else if(res.data==='notexist'){
-                    alert("not registered")
+                    Swal.fire('Error!', 'Not registered.', 'error');
                 }
              })
 

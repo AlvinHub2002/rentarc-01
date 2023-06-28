@@ -80,7 +80,7 @@ function Confirmation() {
       order_id: response.data.id,
       handler: function (response) {
         console.log('Payment Successful:', response);
-        history('/Rating/:id')
+        history('/product-list')
       },
       prefill: {
         name: 'Alvin',

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 // import Header from  '\setProduct/Components/Common/Header.js'
 import './Unverified.css'
 function Unverified() {
@@ -32,6 +33,17 @@ function Unverified() {
 
       const verifyProduct= async () => {
         try {
+          const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: 'You are about to verify this product',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Verify',
+            cancelButtonText: 'Cancel',
+          });
+          if(result.isConfirmed){
           const headers = {
             'productId': localStorage.getItem('productId'),
               };
@@ -41,12 +53,14 @@ function Unverified() {
 
           .then(res=>{
             if(res.data==='perfect'){
-                alert('Product Verified Successfully')            }
+              Swal.fire('Verified!', 'Product has been verified.', 'success');
+            }
             else{
-              alert('failed to verify Product')
+              Swal.fire('Error!', 'Failed to verify the product.', 'error');
             }
           })
-            } catch (error) {
+            }
+           } catch (error) {
           console.error(error);
         }
       };

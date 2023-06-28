@@ -4,6 +4,7 @@ import  { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Product_Listing/ProductList.css'
+import Swal from 'sweetalert2';
 
 
 const AdminPortal = () => {
@@ -93,8 +94,10 @@ const Dashboard=()=> {
     <div>
       
       <div className='admin-dash'>
-      <p>Name: {`${admin?.Firstname} ${admin?.Lastname}`}</p>
-        <p>Email: {admin.email}</p>
+      <p>Name:<br/> <br/> {`${admin?.Firstname} ${admin?.Lastname}`}</p>
+      <hr/>
+        <p>Email:<br/> <br/>  {admin.email}</p>
+        <hr/>
         
       </div>
  
@@ -103,6 +106,34 @@ const Dashboard=()=> {
 }
 
 const Users = () => {
+
+  const handleDeleteUser = async (usermail) => {
+    try {
+      const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: 'You are about to delete this user.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel',
+      });
+      if (result.isConfirmed) {
+        await axios.delete('http://localhost:3000/AdminPortal',{
+          data:{currentmail : usermail},
+        }
+        );
+        Swal.fire('Deleted!', 'User has been deleted successfully.', 'success');
+        // Fetch updated user list
+        fetchData();
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire('Error!', 'Failed to delete user.', 'error');
+    }
+  };
+
   return (
     <div className="users-content">
       <h2>Users</h2>
@@ -122,7 +153,7 @@ const Users = () => {
               <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
-                <button className="action-button" >Delete</button>
+                <button className="action-button" onClick={() => handleDeleteUser(user.email)} >Delete</button>
               </td>
             </tr>
           ))}

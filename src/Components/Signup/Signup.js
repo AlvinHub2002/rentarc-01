@@ -5,6 +5,8 @@ import { useState} from 'react';
 import logo from './logo.png'
 import { Link,useNavigate } from 'react-router-dom';
 import validation from './Validate_signup'
+import Swal from 'sweetalert2';
+
 function Signup() {
 
     const history=useNavigate();
@@ -24,19 +26,30 @@ function Signup() {
             seterrors(validation(Firstname,Lastname,email,password,Confirm));
             if(Object.keys(errors).length===0){
             try{
+                const result = await Swal.fire({
+                    title: 'RentArc',
+                    text: 'You are about to create an account',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ok',
+                    cancelButtonText: 'Cancel',
+                  });
+                  if(result.isConfirmed){
              await axios.post('http://localhost:3000/Signup',{
                 Firstname,Lastname,email,password
              })
              .then(res=>{
                 if(res.data==='exist'){
-                    alert('user already exists')
+                    Swal.fire('Error!', 'Emial already exists.', 'error');
                 }
                 else if(res.data==='perfect'){
-                    alert("Successfully Registered")
+                    Swal.fire('Created!', 'Account created .', 'success');
                     history('/')
                 }
                 else if(res.data==='incomplete'){
-                    alert('incomplete details')
+                    Swal.fire('Error!', 'Failed to create account.', 'error');
                 }
              })
 
@@ -45,6 +58,7 @@ function Signup() {
                 console.log(e);
              })
         }
+    }
         catch(e){
             console.log(e)
         }

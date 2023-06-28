@@ -30,7 +30,7 @@ app.post("/",async(req,res)=>{
 
     try{
         const check=await collection.findOne({email:email})
-        console.log(check.role)
+        // console.log(check.role)
         if (check){
             if(check.password===password){
               if(check.role==='admin'){
@@ -471,3 +471,75 @@ app.post('/Navbar', (req, res) => {
       res.status(500).json({ error: 'Failed to save rating' });
     }
   });
+
+
+
+  app.get('/Navbar', async (req, res) => {
+    try {
+      // Fetch top 4 products based on averageRating in descending order
+      const topProducts = await products.find()
+        .sort({ averageRating: -1 })
+        .limit(4);
+  
+      res.json(topProducts);
+    } catch (error) {
+      console.error('Error fetching top products:', error);
+      res.status(500).json({ error: 'Failed to fetch top products' });
+    }
+  });
+
+
+
+  app.get(`/MyRental_detail/:id`, async (req, res) => {
+    const { id } = req.params;
+    try {
+      const product = await products.findOne({ _id: id });
+      console.log(id)
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      const renter=await collection.findOne({ email:product.Renter});
+  // console.log(response)
+      const response = {
+        product,renter
+      }
+      //console.log(response)
+      res.json(response);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
+
+
+
+  app.delete(`/MyRental_detail/:id`, async (req, res) => {
+    const {id} = req.params;
+    console.log(id)
+    try {
+      await rented.findOneAndDelete({ productId: id });
+      res.status(200).json('Product deleted successfully' );
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      res.status(500).json('Failed to delete product' );
+    }
+  });
+
+
+  app.delete('/AdminPortal', async (req, res) => {
+    try {
+      const { currentmail} = req.body;
+      // console.log(currentmail)
+
+      await collection.findOneAndDelete({ email: currentmail });
+  
+  
+      // Perform additional operations using the email parameter, such as sending an email notification
+  
+      res.json({ message: 'User deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      res.status(500).json({ error: 'Failed to delete user' });
+    }
+  });
+  

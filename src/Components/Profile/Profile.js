@@ -36,6 +36,10 @@ function Profile() {
     localStorage.setItem('productId',id);
     history('/MyProduct_detail/:id')
   };
+  const handleMyRentalClick = (id) => {
+    localStorage.setItem('productId',id);
+    history('/MyRental_detail/:id')
+  };
 
   return (
     <div>
@@ -115,7 +119,7 @@ function Profile() {
                 {Rentals.length > 0 ? (
                 <section id="productList">
                 {Rentals.map((rent) => (
-                <div className="product-box" key={rent._id} >
+                <div className="product-box" key={rent.productId} onClick={()=>handleMyRentalClick(rent.productId)} >
                   {rent.images && (
                   <img className="product-image" src={rent.images[0]?.url} alt={rent.name} />
                 )}

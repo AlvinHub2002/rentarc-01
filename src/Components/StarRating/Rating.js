@@ -1,13 +1,14 @@
 import React, { useState,useEffect } from 'react';
 import './Rating.css'; // Import the CSS file for styling
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 const Rating = () => {
   const [rating, setRating] = useState(0);
   const [ratingComment, setRatingComment] = useState('');
   const [product, setProduct] = useState(null);
 
+  const history = useNavigate();
 
   useEffect(() => {
     const productId = localStorage.getItem('productId');
@@ -62,6 +63,7 @@ const Rating = () => {
         rating,
       });
       console.log('Rating:', response.data);
+      history('/Profile')
     } catch (error) {
       console.error('Error submitting rating:', error);
     }

@@ -423,7 +423,8 @@ body {
 
 .card1 .imgBox {
   position: relative;
-  width: 100%;
+  width: 300px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -431,8 +432,9 @@ body {
   z-index: 1;
 }
 .gopro{
-  width: 100%;
-  height: auto;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
 }
 
 .card1 .contentBox {
@@ -503,7 +505,8 @@ body {
 
 .card2 .imgBox {
   position: relative;
-  width: 100%;
+  width: 300px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -511,13 +514,14 @@ body {
   z-index: 1;
 }
 .headset{
-  width:100%;
-  height: auto;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
 } 
 
 .card2 .contentBox {
   position: relative;
-  padding-top: 11rem;
+  padding-top: 4.5rem;
   display: flex;
   /* justify-content: center; */
   align-items: center;
@@ -582,7 +586,8 @@ body {
 
 .card3 .imgBox {
   position: relative;
-  width: 100%;
+  width: 300px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -590,13 +595,14 @@ body {
   z-index: 1;
 }
 .washer{
-  width:100%;
-  height: auto;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
 } 
 
 .card3 .contentBox {
   position: relative;
-  padding-top: 0.1rem;
+  padding-top: 4.5rem;
   display: flex;
   /* justify-content: center; */
   align-items: center;
@@ -662,21 +668,23 @@ body {
 
 .card4 .imgBox {
   position: relative;
-  width: 100%;
+  width: 300px;
+  height: 300px;
   display: flex;
   justify-content: center;
-  align-items: center;
+
   padding-top: 0;
   z-index: 1;
 }
 .speaker{
-  width:100%;
-  height: 385px;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
 } 
 
 .card4 .contentBox {
   position: relative;
-  padding-top: 0.1rem;
+  padding-top: 4.5rem;
   display: flex;
   /* justify-content: center; */
   align-items: center;
