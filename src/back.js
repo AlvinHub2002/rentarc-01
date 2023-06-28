@@ -55,33 +55,124 @@ app.post("/",async(req,res)=>{
 })
 
 
+
+
+app.delete("/",async(req,res)=>{
+  const{mail,password}=req.body;
+// console.log(email)
+  try{
+      const check=await collection.findOne({email:mail})
+      // console.log(check.role)
+      if (check){
+          if(check.password===password){
+            if(check.role==='admin'){
+              res.json('success-admin')
+            }
+            else{
+              res.json('success-user')
+            }
+          }
+          else{
+              res.json('wrongpass')
+          }
+      }
+      else{
+          res.json("notexist")
+      }
+  }
+
+  catch(e){
+      res.json("notexists")
+  }
+});
+
+
+
+
+
+
+
 app.post("/Signup",async(req,res)=>{
-    const{Firstname,Lastname,email,password}=req.body
+  const{Firstname,Lastname,email,password}=req.body
+
+
+  try{
     const data={
-        Firstname:Firstname,
-        Lastname:Lastname,
-        email:email,
-        password:password
-    }
+      Firstname:Firstname,
+      Lastname:Lastname,
+      email:email,
+      password:password
+  }
+      const check=await collection.findOne({email:email})
+      if (check){
+          res.json("exist")
+      }
+      else if (data.Firstname!=='' && data.Lastname!==''&&data.email!==''&& data.password!==''){
+          res.json("perfect")
+          await collection.insertMany([data])
 
-    try{
-        const check=await collection.findOne({email:email})
-        if (check){
-            res.json("exist")
-        }
-        else if (data.Firstname!=='' && data.Lastname!==''&&data.email!==''&& data.password!==''){
-            res.json("perfect")
-            await collection.insertMany([data])
-        }
-        else if (data.Firstname==='' && data.Lastname===''&&data.email===''&& data.password===''){
-            res.json("incomplete")
+          const transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+              user: 'myrentarc@gmail.com',
+              pass: 'wqjbrpzjophakbiw',
+            },
+          });
+        
+          const mailOptions = {
+            from: 'myrentarc@gmail.com',
+            to: data.email,
+            subject: 'Welcome to RentArc',
+            text: `Your RentArc account has been created\n\nUsername:${data.email}\nName:${data.Firstname} ${data.Lastname}\nPassword:${data.password}(do not share)`,
+            
+          };
+        
+          try {
+            await transporter.sendMail(mailOptions);
+            console.log('Email notification sent successfully');
+          } catch (error) {
+            console.error('Error sending email notification:', error);
+          }
 
+      }
+      else if (data.Firstname==='' && data.Lastname===''&&data.email===''&& data.password===''){
+          res.json("incomplete")
+
+  }
+  }
+  catch(e){
+      res.json("notexists")
+  }
+});
+
+
+app.delete("/Signup", async (req, res) => {
+  const { Fname, Lname, mail, pass } = req.body;
+  console.log(Fname);
+
+  try {
+    const check = await collection.findOne({ email: mail });
+
+    if (check) {
+      res.json('exist');
+    } else {
+      const userData = {
+        Firstname: Fname,
+        Lastname: Lname,
+        email: mail,
+        password: pass, // Include the password if available
+      };
+
+      // Perform the account creation logic
+      await collection.insertMany([userData]);
+
+      res.json('perfect');
     }
-    }
-    catch(e){
-        res.json("notexists")
-    }
-})
+  } catch (error) {
+    console.error(error);
+    res.json('incomplete');
+  }
+});
 
 
 app.post('/Navbar', (req, res) => {
