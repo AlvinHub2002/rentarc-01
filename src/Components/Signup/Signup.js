@@ -119,7 +119,7 @@ function Signup() {
                 if(res.data==='exist'){
                     Swal.fire('Error!', 'Emial already exists.', 'error');
                 }
-                else if(res.data==='perfect'){
+                else if(res.data==='perfect'){  
                     Swal.fire('Created!', 'Account created .', 'success');
                     history('/')
                 }

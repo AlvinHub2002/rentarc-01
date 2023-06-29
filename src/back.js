@@ -97,15 +97,16 @@ app.post("/Signup",async(req,res)=>{
   const{Firstname,Lastname,email,password}=req.body
 
 
-  try{
-    const data={
+  
+   
+
+    try{
+      const data={
         Firstname:Firstname,
         Lastname:Lastname,
         email:email,
         password:password
-    }
-
-    try{
+        }
         const check=await collection.findOne({email:email})
         if (check){
             res.json("exist")
@@ -139,12 +140,12 @@ app.post("/Signup",async(req,res)=>{
         else if (data.Firstname==='' && data.Lastname===''&&data.email===''&& data.password===''){
             res.json("incomplete")
 
-  }
-  }
-  catch(e){
-      res.json("notexists")
-  }
-});
+          }
+        }
+        catch(e){
+            res.json("notexists")
+        }
+    });
 
 
 app.delete("/Signup", async (req, res) => {
@@ -737,7 +738,7 @@ app.post('/Navbar', (req, res) => {
   app.delete(`/MyRental_detail/:id`, async (req, res) => {
     const {id} = req.params;
     const {loggedin}=req.body;
-    
+
     console.log(id)
     try {
       const rent=await rented.findOneAndDelete({ productId: id });

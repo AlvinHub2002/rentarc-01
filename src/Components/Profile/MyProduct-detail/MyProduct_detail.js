@@ -123,6 +123,7 @@ function MyProduct_detail() {
           <p>Contact: {product.contact}</p>
           <p>Email: {email}</p>
         </div>
+      
         </div>
       </div>
     </div>
@@ -134,9 +135,10 @@ function MyProduct_detail() {
         </div>
         </div>
 
+        
+        </div>
         <div className='rent-button-main'>
         <button className="rent-button" onClick={deleteProduct}>Delete Product</button>
-        </div>
         </div>
     </div>
   )

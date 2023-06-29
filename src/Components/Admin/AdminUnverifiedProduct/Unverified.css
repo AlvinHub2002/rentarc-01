@@ -134,6 +134,8 @@
       /* background-color: aqua; */
       /* text-align: center; */
       padding-left: 5rem;
+      display: flex;
+      flex-direction: row;
       }
     
     .rent-button {

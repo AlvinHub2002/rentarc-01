@@ -126,6 +126,7 @@ function MyRental_detail() {
           <p>Contact: {product.contact}</p>
           <p>Email: {email}</p>
         </div>
+       
         </div>
       </div>
     </div>
@@ -137,11 +138,12 @@ function MyRental_detail() {
         </div>
         </div>
 
+       
+        </div>
         <div className='rent-button-main'>
         <button className="rent-button" onClick={handleRatingClick}>Rate this product</button><br/>
         <button className="rent-button" onClick={deleteProduct}>Cancel order</button>
 
-        </div>
         </div>
     </div>
   )

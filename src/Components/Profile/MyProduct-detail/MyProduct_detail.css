@@ -133,18 +133,24 @@
     .rent-button-main{
       /* background-color: aqua; */
       /* text-align: center; */
-      padding-left: 5rem;
+      padding-left: 2rem;
+      display: flex;
+      gap: 2rem;
+      flex-direction: row;
+      padding-bottom: 2rem;
       }
     
     .rent-button {
-      padding: 10px 40px;
+      padding: 20px 40px;
       margin-top: 5rem;
-      background-color: rgb(60, 60, 154);
+      background-color: rgb(116, 116, 213);
       border-radius: 30px;
       color: white;
       border: none;
       cursor: pointer;
       font-size: 18px;
+      width: 250px;
+    
       letter-spacing: 1px;
     }
   
@@ -153,6 +159,8 @@
       /* padding-top: ; */
       padding-left: 8rem;
       padding-bottom: 5rem;
+      width: auto;
+
     }
   
     .product-description{
@@ -160,7 +168,6 @@
       height: auto;
       padding: 30px;
       border-radius: 15px;
-      width:auto;
     }
     
     .product-description h3 {

@@ -273,14 +273,14 @@ function Navbar() {
           <div className='footer-section'>
             <h2>Section</h2>
             <a href='amazom.com'>Home</a>
-            <a href='amazon'>Categories</a>
+            <Link to={'/Disclaimer'}>Disclaimer</Link>
             <a href='amazon.com'>Profile</a>
           </div>
           <div className='about'>
             <h2 className='footer-about'>Contact Details</h2>
-            <p className='address'>Address: 123 Main Street, City, Country</p>
-            <p className='phone'>Phone: (123) 456-7890</p>
-            <p className='email'>Email: info@example.com</p>
+            <p className='address'>Address: SJCET Palai</p>
+            <p className='phone'>Phone:+91 9744901994</p>
+            <p className='email'>Email: myrentarc@gmail.com</p>
           </div>
         </div>
       </footer>

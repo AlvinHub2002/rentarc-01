@@ -1,4 +1,6 @@
-
+/* body{
+  background-color: #59595a;
+} */
   .listing {
     display: flex;
     justify-content: space-between;

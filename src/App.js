@@ -16,6 +16,8 @@ import MyProduct_detail from './Components/Profile/MyProduct-detail/MyProduct_de
 import Rating from './Components/StarRating/Rating';
 import MyRental_detail from './Components/Profile/MyRental_detail/MyRental_detail';
 import AboutUs from './Components/AboutUs/AboutUs';
+import PopupDisclaimer from './Components/PopupDisclaimer/PopupDisclaimer';
+
 function App() {
   return (
   <div className='app'>
@@ -36,6 +38,8 @@ function App() {
       <Route path='/Rating/:id' element={<Rating/>} />
       <Route path='/MyRental_detail/:id' element={<MyRental_detail/>} />
       <Route path='/AboutUs' element={<AboutUs/>} />
+      <Route path='/Disclaimer' element={<PopupDisclaimer/>} />
+
 
       </Routes>
   </div>

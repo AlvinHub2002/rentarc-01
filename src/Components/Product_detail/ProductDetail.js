@@ -88,6 +88,7 @@ function ProductDetail() {
           <p>Contact: {product.contact}</p>
           <p>Email: {email}</p>
         </div>
+        
         </div>
       </div>
     </div>
@@ -99,10 +100,12 @@ function ProductDetail() {
         </div>
         </div>
 
+       
+        </div>
         <div className='rent-button-main'>
         <button className="rent-button" onClick={handleRentNow}>Rent Now</button>
         </div>
-        </div>
+        
     </div>
   )
 }

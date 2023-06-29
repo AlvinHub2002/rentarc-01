@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Header from '../../Common/Header';
 // import Header from  '\setProduct/Components/Common/Header.js'
 import './Unverified.css'
 function Unverified() {
@@ -115,7 +116,7 @@ function Unverified() {
 
   return (
     <div className='product-details-main'>
-      {/* <Header/> */}
+      <Header/>
         <div className="product-details-container">
       <div className="product-image-container">
         <div className='thumbnail-container'>
@@ -153,6 +154,7 @@ function Unverified() {
           <p>Contact: {product.contact}</p>
           <p>Email: {email}</p>
         </div>
+        
         </div>
       </div>
     </div>
@@ -164,11 +166,12 @@ function Unverified() {
         </div>
         </div>
 
+        
+        </div>
         <div className='rent-button-main'>
         <button className="rent-button" onClick={verifyProduct}>Verify Product</button><br/>
         <button className="rent-button" onClick={unverifyProduct}>UnVerify Product</button>
 
-        </div>
         </div>
     </div>
   )

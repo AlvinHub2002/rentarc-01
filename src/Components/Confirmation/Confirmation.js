@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Confirmation.css';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 import Header from '../../Components/Common/Header'
 
 function Confirmation() {
@@ -57,6 +59,48 @@ function Confirmation() {
     }
     return 0;
   };
+
+
+
+
+
+
+
+
+
+
+  const PopupDisclaimer = async () => {
+    const result = await Swal.fire({
+      title: 'Disclaimer',
+      html: `
+        <h4>Please conatact the owner before making payment to know about the product</h4>
+        <ul>
+        <li>Verify the details of the rental item, including its condition, features, and any additional charges.</li>
+        <li>No delivery of product is available.</li>
+        <li>Inspect the rental item thoroughly before accepting it and report any damages or issues immediately.</li>
+        <li>Adhere to the specified rental duration and return the item on time to avoid any penalties.</li>
+      </ul>
+        <p>You are about to rent a product</p>
+      `,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ok',
+      cancelButtonText: 'Cancel',
+    });
+  
+    if (result.isConfirmed) {
+      initiatePayment();
+    }
+  
+    // Rest of the code
+  };
+
+
+
+
+
 
 
   const initiatePayment = async () => {
@@ -135,7 +179,7 @@ function Confirmation() {
                 </div>
                 <p className="total-price-confirm" >{`Total Price: Rs.${calculateTotalPrice()}`}</p>
                 <div className="confirmation-butt">
-                  <button onClick={initiatePayment}>Confirm & Pay</button>
+                  <button onClick={PopupDisclaimer}>Confirm & Pay</button>
                 </div>
               </div>
             </div>

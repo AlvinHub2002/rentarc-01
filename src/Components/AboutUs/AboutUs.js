@@ -11,7 +11,7 @@ import { faInstagram, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-
 const AboutUs = () => {
   const teamMembers = [
     {
-      name: 'John Doe',
+      name: 'AJO THOMAS',
       role: 'CEO',
       photo: a, // Replace with the actual image filename or URL
       animation: 'john-doe-animation.json', // Replace with the actual animation JSON file
@@ -20,7 +20,7 @@ const AboutUs = () => {
       github: 'https://www.github.com/johndoe',
     },
     {
-      name: 'Jane Smith',
+      name: 'ALVIN VARGHESE',
       role: 'CTO',
       photo: b, // Replace with the actual image filename or URL
       animation: 'jane-smith-animation.json', // Replace with the actual animation JSON file
@@ -29,7 +29,7 @@ const AboutUs = () => {
       github: 'https://www.github.com/janesmith',
     },
     {
-      name: 'Mike Johnson',
+      name: 'LLOYD SIBI',
       role: 'Marketing Director',
       photo: c, // Replace with the actual image filename or URL
       animation: 'mike-johnson-animation.json', // Replace with the actual animation JSON file
@@ -38,7 +38,7 @@ const AboutUs = () => {
       github: 'https://www.github.com/mikejohnson',
     },
     {
-      name: 'Emily Davis',
+      name: 'AADIT V BIJU ',
       role: 'Designer',
       photo: d, // Replace with the actual image filename or URL
       animation: 'emily-davis-animation.json', // Replace with the actual animation JSON file
