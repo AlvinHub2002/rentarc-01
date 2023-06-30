@@ -3,6 +3,7 @@
     padding: 20px;
   }
   
+  
   .team-members-container {
     display: flex;
     flex-wrap: wrap;
@@ -10,13 +11,15 @@
   }
   
   .team-member-card {
-    width: 250px;
+    width: 350px;
     margin: 20px;
     padding: 20px;
-    background-color: #f8f8f8;
+    background-color: #cfd8f2;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    box-shadow: 0 15px 25px rgba(98, 85, 159, 0.937);
+
   }
   
   .team-member-card:hover {

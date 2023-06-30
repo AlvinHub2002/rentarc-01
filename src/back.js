@@ -167,6 +167,28 @@ app.delete("/Signup", async (req, res) => {
 
       // Perform the account creation logic
       await collection.insertMany([userData]);
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: 'myrentarc@gmail.com',
+          pass: 'wqjbrpzjophakbiw',
+        },
+      });
+    
+      const mailOptions = {
+        from: 'myrentarc@gmail.com',
+        to: userData.email,
+        subject: 'Welcome to RentArc',
+        text: `Your RentArc account has been created\n\nUsername:${userData.email}\nName:${userData.Firstname} ${userData.Lastname}`,
+        
+      };
+    
+      try {
+        await transporter.sendMail(mailOptions);
+        console.log('Email notification sent successfully');
+      } catch (error) {
+        console.error('Error sending email notification:', error);
+      }
 
       res.json('perfect');
     }

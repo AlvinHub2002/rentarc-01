@@ -11,7 +11,7 @@ import { faInstagram, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-
 const AboutUs = () => {
   const teamMembers = [
     {
-      name: 'AJO THOMAS',
+      name: 'LLoy Sibi',
       role: 'CEO',
       photo: a, // Replace with the actual image filename or URL
       animation: 'john-doe-animation.json', // Replace with the actual animation JSON file
@@ -24,18 +24,18 @@ const AboutUs = () => {
       role: 'CTO',
       photo: b, // Replace with the actual image filename or URL
       animation: 'jane-smith-animation.json', // Replace with the actual animation JSON file
-      linkedin: 'https://www.linkedin.com/in/janesmith',
-      instagram: 'https://www.instagram.com/janesmith',
-      github: 'https://www.github.com/janesmith',
+      linkedin: 'https://www.linkedin.com/in/alvin-varghese-9529b4211/',
+      instagram: 'https://www.instagram.com/alvinvargheseavm/',
+      github: 'https://github.com/AlvinHub2002',
     },
     {
-      name: 'LLOYD SIBI',
+      name: 'AJO THOMAS',
       role: 'Marketing Director',
       photo: c, // Replace with the actual image filename or URL
       animation: 'mike-johnson-animation.json', // Replace with the actual animation JSON file
-      linkedin: 'https://www.linkedin.com/in/mikejohnson',
-      instagram: 'https://www.instagram.com/mikejohnson',
-      github: 'https://www.github.com/mikejohnson',
+      linkedin: 'https://www.linkedin.com/in/ajo-thomas-28ba51220/',
+      instagram: 'https://www.instagram.com/jo_thomz._/',
+      github: 'https://github.com/ajothomas07',
     },
     {
       name: 'AADIT V BIJU ',

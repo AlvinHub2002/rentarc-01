@@ -76,9 +76,8 @@ function Profile() {
                 <hr/>
                 <p>Email: <br/><br/>{userDetails.email}</p>
                 <hr/>
-                <p>Phone: <br/><br/>{userDetails.email}</p>
+                <p>Phone: <br/><br/>9744901994</p>
                 <hr/>
-                <p>Address: <br/><br/>{userDetails.email}</p>
                 <hr/>
 
                 {/* Add more user details here */}
