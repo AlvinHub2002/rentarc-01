@@ -31,6 +31,7 @@ const Post = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [quantity, setQuantity] = useState('');
   const [district, setDistrict] = useState('');
   const [place, setPlace] = useState('');
   const [contact, setContact] = useState('');
@@ -73,6 +74,7 @@ const Post = () => {
     brand,
     title,
     description,
+    quantity,
     price,
     district,
     place,
@@ -128,6 +130,7 @@ const Post = () => {
       <div className='product-details'>
         <label htmlFor="category">Category:</label>
         <select
+        required
           id="category"
           value={category}
           name='category'
@@ -149,6 +152,7 @@ const Post = () => {
       <div>
         <label htmlFor="brand">Brand:</label>
         <input
+        required
           type="text"
           id="brand"
           name='brand'
@@ -160,6 +164,7 @@ const Post = () => {
       <div>
         <label htmlFor="title">Title:</label>
         <input
+        required
           type="text"
           id="title"
           name='title'
@@ -171,6 +176,7 @@ const Post = () => {
       <div>
         <label htmlFor="description">Description:</label>
         <textarea
+        required
           id="description"
           value={description}
           name='dscription'
@@ -179,8 +185,21 @@ const Post = () => {
       </div>
 
       <div>
+        <label htmlFor="quantity">Quantity:</label>
+        <input
+        required
+          type="number"
+          id="quantity"
+          name='quantity'
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+        />
+      </div>
+
+      <div>
         <label htmlFor="price">Rent per day:</label>
         <input
+        required
           type="number"
           id="price"
           name='price'
@@ -198,6 +217,7 @@ const Post = () => {
                 <img className="image-preview" src={images[index]} alt="Preview" />
               )}
               <input
+              required
                 type="file"
                 id={`image-upload-${index}`}
                 accept="image/*"
@@ -215,6 +235,7 @@ const Post = () => {
       <div>
           <label htmlFor="location">District:</label>
           <select
+          required
             id="location"
             value={district}
             name="location"
@@ -233,6 +254,7 @@ const Post = () => {
         <div>
         <label htmlFor="contact">Place:</label>
         <input
+        required
           type="text"
           id="place"
           name='place'
@@ -248,6 +270,7 @@ const Post = () => {
       <div>
         <label htmlFor="contact">Contact no:</label>
         <input
+        required
           type="text"
           id="contact"
           name='contact'
@@ -259,6 +282,7 @@ const Post = () => {
       <div>
           <label htmlFor="postDate">Post Date:</label>
           <input
+          required
             type="text"
             id="postDate"
             name="postDate"

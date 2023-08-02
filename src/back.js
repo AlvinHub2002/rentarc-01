@@ -209,7 +209,7 @@ app.post('/Navbar', (req, res) => {
 
 
   app.post('/Post', async (req, res) => {
-    const { category, brand, title, description, price, district,place, contact, images,postDate } = req.body;
+    const { category, brand, title, description,quantity, price, district,place, contact, images,postDate } = req.body;
     const username = req.body.username;
     try {
       const uploadedImages = [];
@@ -241,6 +241,7 @@ app.post('/Navbar', (req, res) => {
         brand,
         title,
         description,
+        quantity,
         price,
         district,
         place,
@@ -266,26 +267,34 @@ app.post('/Navbar', (req, res) => {
   
   app.get('/product-list', async (req, res) => {
     try {
-      const productData = await products.find({});
-      res.json(productData);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  })
-
-
-  app.get('/Categorypage', async (req, res) => {
-    try {
-    const category = req.headers['x-selected-category'];
-      console.log(category)
-      const productData = await products.find({category:category});
+      // Filter the products with quantity greater than 0
+      const productData = await products.find({ quantity: { $gt: 0 } });
       res.json(productData);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal server error' });
     }
   });
+  
+
+
+  app.get('/Categorypage', async (req, res) => {
+    try {
+      const category = req.headers['x-selected-category'];
+      console.log(category);
+      const productData = await products.find({
+        $and: [
+          { category: category },
+          { quantity: { $gt: 0 } } 
+        ]
+      });
+      res.json(productData);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
 
 
   app.get(`/Product_detail/:id`, async (req, res) => {
@@ -394,7 +403,7 @@ app.post('/Navbar', (req, res) => {
 
 
   app.post('/Unverified', async (req, res) => {
-    const { category, brand, title, description, price, district,place, contact, images,Renter,postDate,averageRating } = req.body;
+    const { category, brand, title, description,quantity, price, district,place, contact, images,Renter,postDate,averageRating } = req.body;
     console.log(category)
     const id=req.header('productId')
     try{
@@ -404,6 +413,7 @@ app.post('/Navbar', (req, res) => {
         brand,
         title,
         description,
+        quantity,
         price,
         district,
         place,
@@ -420,6 +430,7 @@ app.post('/Navbar', (req, res) => {
         brand,
         title,
         description,
+        quantity,
         price,
         district,
         place,
@@ -470,7 +481,7 @@ app.post('/Navbar', (req, res) => {
   
 
   app.delete('/Unverified', async (req, res) => {
-    const { category, brand, title, description, price, district, place, contact, images, Renter, postDate, averageRating } = req.body;
+    const { category, brand, title, description,quantity, price, district, place, contact, images, Renter, postDate, averageRating } = req.body;
     const id = req.header('productId');
   
     const transporter = nodemailer.createTransport({
@@ -503,6 +514,7 @@ app.post('/Navbar', (req, res) => {
         brand,
         title,
         description,
+        quantity,
         price,
         district,
         place,
@@ -654,6 +666,7 @@ app.post('/Navbar', (req, res) => {
       });
 
       const rentedProduct = await productDetails.save();
+      await products.updateOne({ _id: id }, { $inc: { quantity: -1 } });
   
       res.json({
         id: order.id,
@@ -764,6 +777,8 @@ app.post('/Navbar', (req, res) => {
     console.log(id)
     try {
       const rent=await rented.findOneAndDelete({ productId: id });
+      await products.updateOne({ _id: id }, { $inc: { quantity: 1 } });
+
       
       const transporter = nodemailer.createTransport({
         service: 'Gmail',

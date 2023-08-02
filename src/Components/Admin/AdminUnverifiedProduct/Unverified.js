@@ -143,6 +143,7 @@ function Unverified() {
 
           <h2>{product.brand}</h2>
           <p className='product-detail-card-title'>{product.title}</p>
+          <p className='product-detail-card-location'>Available Quantity : {product.quantity}</p>
           <p className='product-detail-card-price'>Rent per day:<span className='product-detail-card-price-span'> Rs.{product.price}</span></p>
           <p className='product-detail-card-location'>District: {product.district}</p>
           <p className='product-detail-card-location'>Place: {product.place}</p>

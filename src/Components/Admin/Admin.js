@@ -57,6 +57,7 @@ const VerifiedProducts = () => {
           <div className="product-box" key={product._id} onClick={()=>handleProductClick(product._id)}>
             <img className="product-image" src={product.images[0]?.url} alt={product.name} />
             <h3 className="product-name">{product.brand}</h3>
+            <p className="product-title"> quantity : {product.quantity}</p>
             <p className="product-title">{product.title}</p>
             <p className="product-price">Rs.{product.price}/day</p>
           </div>
@@ -78,6 +79,7 @@ const UnverifiedProducts = () => {
           <div className="product-box" key={product._id} onClick={()=>handleUnverifiedProductClick(product._id)}>
             <img className="product-image" src={product.images[0]?.url} alt={product.name} />
             <h3 className="product-name">{product.brand}</h3>
+            <p className="product-title"> quantity : {product.quantity}</p>
             <p className="product-title">{product.title}</p>
             <p className="product-price">Rs.{product.price}/day</p>
           </div>

@@ -121,6 +121,7 @@ function Categorypage() {
               <img className="category-product-image" src={product.images[0]?.url} alt={product.name} />
               <h3 className="category-product-name">{product.brand}</h3>
               <p className="category-product-title">{product.title}</p>
+              <p className="category-product-title"> Available Qunatity : {product.quantity}</p>
               <p className="category-roduct-price">Rs.{product.price}/day</p>
             </div>
           ))}

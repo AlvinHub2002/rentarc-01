@@ -5,6 +5,7 @@ const newSchema=new mongoose.Schema({
     brand: String,
     title: String,
     description: String,
+    quantity:Number,
     price: Number,
     district: String,
     place:String,
